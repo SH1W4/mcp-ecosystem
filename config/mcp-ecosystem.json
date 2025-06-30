@@ -1,0 +1,39 @@
+{
+  "server": {
+    "host": "localhost",
+    "port": 3000,
+    "maxConnections": 100,
+    "timeout": 30000
+  },
+  "ai": {
+    "enabled": true,
+    "provider": "local",
+    "model": "gpt-4",
+    "maxTokens": 4000,
+    "temperature": 0.7,
+    "contextWindow": 10
+  },
+  "logging": {
+    "level": "info",
+    "enableAnalytics": true,
+    "bufferSize": 1000,
+    "retention": 7
+  },
+  "security": {
+    "enableAuth": true,
+    "tokenExpiry": 3600,
+    "maxLoginAttempts": 5,
+    "rateLimitWindow": 900,
+    "rateLimitMax": 100
+  },
+  "performance": {
+    "cacheEnabled": true,
+    "cacheSize": 100,
+    "poolSize": 10,
+    "autoOptimize": true
+  },
+  "environment": "development",
+  "version": "0.1.0",
+  "lastUpdated": "2025-06-30T16:18:56.000Z"
+}
+
