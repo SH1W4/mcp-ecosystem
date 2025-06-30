@@ -52,7 +52,7 @@ async function main(): Promise<void> {
         logger.info('✅ MCP Ecosystem finalizado com sucesso');
         process.exit(0);
       } catch (error) {
-        logger.error('❌ Erro durante shutdown:', error);
+        logger.error('❌ Erro durante shutdown:', error as Error);
         process.exit(1);
       }
     };
@@ -64,12 +64,12 @@ async function main(): Promise<void> {
       handleShutdown().catch(() => process.exit(1));
     });
     process.on('unhandledRejection', (reason: unknown) => {
-      logger.error('❌ Unhandled Rejection:', reason);
+      logger.error('❌ Unhandled Rejection:', reason as Error);
       handleShutdown().catch(() => process.exit(1));
     });
 
   } catch (error) {
-    logger.error('❌ Falha na inicialização do MCP Ecosystem:', error);
+    logger.error('❌ Falha na inicialização do MCP Ecosystem:', error as Error);
     process.exit(1);
   }
 }
