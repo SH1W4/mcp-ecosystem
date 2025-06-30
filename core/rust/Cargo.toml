@@ -1,0 +1,34 @@
+[package]
+name = "cognition-mcp-core"
+version = "0.1.0"
+edition = "2021"
+authors = ["João <joao@cognition-mcp.dev>"]
+description = "Core Rules Engine para Cognition MCP - Portal Assimilador de Regras"
+license = "MIT"
+repository = "https://github.com/NEO-SH1W4/cognition-mcp"
+keywords = ["mcp", "rules-engine", "ai", "automation", "development"]
+
+[dependencies]
+tokio = { version = "1.0", features = ["full"] }
+serde = { version = "1.0", features = ["derive"] }
+serde_json = "1.0"
+chrono = { version = "0.4", features = ["serde"] }
+uuid = { version = "1.0", features = ["v4"] }
+thiserror = "1.0"
+anyhow = "1.0"
+tracing = "0.1"
+tracing-subscriber = "0.3"
+regex = "1.0"
+async-trait = "0.1"
+
+[dev-dependencies]
+tokio-test = "0.4"
+
+[lib]
+name = "cognition_mcp_core"
+path = "src/lib.rs"
+
+[[bin]]
+name = "rules-engine"
+path = "src/main.rs"
+
