@@ -1,9 +1,9 @@
 /**
  * Dynamic Configuration Manager with AI Adaptation
- * 
+ *
  * Um sistema de configuração revolucionário que se adapta automaticamente
  * ao comportamento do usuário e às condições do sistema.
- * 
+ *
  * @features
  * - Hot reload de configurações
  * - Adaptação automática baseada em uso
@@ -194,7 +194,11 @@ export class ConfigManager extends EventEmitter {
       await this.createBackup();
 
       const oldConfig = { ...this.config };
-      const newConfig = { ...this.config, ...updates, lastUpdated: new Date().toISOString() };
+      const newConfig = {
+        ...this.config,
+        ...updates,
+        lastUpdated: new Date().toISOString(),
+      };
 
       // Validate new configuration
       const validatedConfig = ConfigSchema.parse(newConfig);
@@ -219,7 +223,6 @@ export class ConfigManager extends EventEmitter {
         moduleId: 'config-manager',
         metadata: { reason, changes: Object.keys(updates) },
       });
-
     } catch (error) {
       this.logger.error('Failed to update configuration', error as Error, {
         moduleId: 'config-manager',
@@ -372,7 +375,7 @@ export class ConfigManager extends EventEmitter {
   ): void {
     // Simple change detection - in production, you'd want deep comparison
     const changes: IConfigChange[] = [];
-    
+
     if (JSON.stringify(oldConfig) !== JSON.stringify(newConfig)) {
       changes.push({
         key: 'config.full',
@@ -384,7 +387,7 @@ export class ConfigManager extends EventEmitter {
     }
 
     this.changeHistory.push(...changes);
-    
+
     // Keep only last 100 changes
     if (this.changeHistory.length > 100) {
       this.changeHistory.splice(0, this.changeHistory.length - 100);
@@ -397,7 +400,7 @@ export class ConfigManager extends EventEmitter {
   private async createBackup(): Promise<void> {
     const timestamp = new Date().toISOString().replace(/[:.]/g, '-');
     const backupFile = join(this.backupPath, `config-${timestamp}.json`);
-    
+
     try {
       const configData = JSON.stringify(this.config, null, 2);
       writeFileSync(backupFile, configData, 'utf-8');
@@ -452,8 +455,10 @@ class ConfigAdaptationEngine {
     const suggestions: string[] = [];
 
     // Analyze usage patterns
-    const totalAccess = Array.from(usageStats.values())
-      .reduce((sum, stat) => sum + stat.accessCount, 0);
+    const totalAccess = Array.from(usageStats.values()).reduce(
+      (sum, stat) => sum + stat.accessCount,
+      0
+    );
 
     // Suggest optimizations based on usage
     if (totalAccess > 1000) {
@@ -461,13 +466,14 @@ class ConfigAdaptationEngine {
     }
 
     // Analyze error patterns from change history
-    const recentChanges = changeHistory
-      .filter(change => 
-        new Date().getTime() - change.timestamp.getTime() < 86400000 // last 24h
-      );
+    const recentChanges = changeHistory.filter(
+      change => new Date().getTime() - change.timestamp.getTime() < 86400000 // last 24h
+    );
 
     if (recentChanges.length > 10) {
-      suggestions.push('High configuration change frequency detected. Consider stabilizing settings.');
+      suggestions.push(
+        'High configuration change frequency detected. Consider stabilizing settings.'
+      );
     }
 
     return suggestions;
@@ -503,4 +509,3 @@ class ConfigAdaptationEngine {
     return optimizations;
   }
 }
-

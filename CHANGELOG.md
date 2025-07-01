@@ -8,6 +8,7 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ## [Unreleased]
 
 ### Planejado
+
 - Interface web do MCP Studio
 - Marketplace de servidores MCP
 - Dashboard de monitoramento avançado
@@ -16,23 +17,29 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - CLI para automação
 
 ### Changed
+
 - (vazio)
 
 ### Deprecated
+
 - (vazio)
 
 ### Removed
+
 - (vazio)
 
 ### Fixed
+
 - (vazio)
 
 ### Security
+
 - (vazio)
 
 ## [0.1.0] - 2025-06-30 - "Genesis Release" 🚀
 
 ### Added
+
 - 🚀 **Estrutura inicial completa do MCP Ecosystem**
 - 🧠 **Logger Inteligente com IA Contextual**
   - Auto-classificação de severidade
@@ -66,6 +73,7 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 ---
 
 **Convenções de Commit:**
+
 - `feat:` - nova funcionalidade
 - `fix:` - correção de bug
 - `docs:` - apenas documentação
@@ -73,4 +81,3 @@ e este projeto adere ao [Semantic Versioning](https://semver.org/spec/v2.0.0.htm
 - `refactor:` - refatoração de código
 - `test:` - adição ou correção de testes
 - `chore:` - tarefas de manutenção
-

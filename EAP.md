@@ -27,12 +27,11 @@
 
 3. **Predição de Falhas**
    - Análise preditiva
-   
+
 ## Fase 3: MCP Studio Visual (Q4 2025)
 
 1. **IDE Visual MCP Studio**
    - Ferramenta de fluxo drag-and-drop
-   
 2. **Dashboard Analítico**
    - Visualização em tempo real de métricas
 
@@ -51,4 +50,3 @@
    - Capacitação para desenvolvimento MCP
 
 ---
-

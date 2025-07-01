@@ -1,9 +1,9 @@
 /**
  * MCP Ecosystem Core with Integrated AI
- * 
+ *
  * O núcleo revolucionário do MCP Ecosystem que orquestra todos os componentes
  * com inteligência artificial integrada para otimização contínua.
- * 
+ *
  * @features
  * - Orquestração inteligente de servidores MCP
  * - IA contextual para otimização automática
@@ -120,7 +120,6 @@ export class MCPEcosystem extends EventEmitter {
           autoOptimize: this.config.performance.autoOptimize,
         },
       });
-
     } catch (error) {
       this.logger.error('❌ Failed to initialize MCP Ecosystem', error as Error, {
         moduleId: 'mcp-ecosystem',
@@ -174,7 +173,6 @@ export class MCPEcosystem extends EventEmitter {
 
       // Start periodic optimization
       this.startPeriodicOptimization();
-
     } catch (error) {
       this.logger.error('❌ Failed to start MCP Ecosystem', error as Error, {
         moduleId: 'mcp-ecosystem',
@@ -217,7 +215,6 @@ export class MCPEcosystem extends EventEmitter {
       this.logger.info('✅ MCP Ecosystem stopped successfully', {
         moduleId: 'mcp-ecosystem',
       });
-
     } catch (error) {
       this.logger.error('❌ Error stopping MCP Ecosystem', error as Error, {
         moduleId: 'mcp-ecosystem',
@@ -247,7 +244,8 @@ export class MCPEcosystem extends EventEmitter {
 
     // AI orchestrator can analyze if this server should be started
     if (this.config.ai.enabled && this.isRunning) {
-      const decision = await this.aiOrchestrator.analyzeServerRegistration(serverWithStatus);
+      const decision =
+        await this.aiOrchestrator.analyzeServerRegistration(serverWithStatus);
       if (decision.shouldStart) {
         await this.startServer(server.id);
       }
@@ -292,7 +290,6 @@ export class MCPEcosystem extends EventEmitter {
         moduleId: 'mcp-ecosystem',
         metadata: { serverId, serverName: server.name },
       });
-
     } catch (error) {
       this.updateServerStatus(serverId, 'error');
       this.logger.error('❌ Failed to start MCP Server', error as Error, {
@@ -339,7 +336,6 @@ export class MCPEcosystem extends EventEmitter {
         moduleId: 'mcp-ecosystem',
         metadata: { serverId, serverName: server.name },
       });
-
     } catch (error) {
       this.updateServerStatus(serverId, 'error');
       this.logger.error('❌ Failed to stop MCP Server', error as Error, {
@@ -356,7 +352,7 @@ export class MCPEcosystem extends EventEmitter {
   public getStats(): IEcosystemStats {
     const servers = Array.from(this.servers.values());
     const runningServers = servers.filter(s => s.status === 'running');
-    
+
     // Calculate total requests and average response time from metrics
     let totalRequests = 0;
     let totalResponseTime = 0;
@@ -421,7 +417,7 @@ export class MCPEcosystem extends EventEmitter {
    */
   private async handleConfigChange(event: { newConfig: IConfig }): Promise<void> {
     this.config = event.newConfig;
-    
+
     this.logger.info('🔄 Configuration updated, applying changes...', {
       moduleId: 'mcp-ecosystem',
     });
@@ -455,7 +451,11 @@ export class MCPEcosystem extends EventEmitter {
   /**
    * Handle health issues
    */
-  private async handleHealthIssue(issue: { serverId: string; issue: string; severity: string }): Promise<void> {
+  private async handleHealthIssue(issue: {
+    serverId: string;
+    issue: string;
+    severity: string;
+  }): Promise<void> {
     this.logger.warn('🚨 Health issue detected', {
       moduleId: 'mcp-ecosystem',
       metadata: issue,
@@ -488,7 +488,10 @@ export class MCPEcosystem extends EventEmitter {
   /**
    * Handle AI optimizations
    */
-  private async handleAIOptimization(optimization: { type: string; suggestion: string }): Promise<void> {
+  private async handleAIOptimization(optimization: {
+    type: string;
+    suggestion: string;
+  }): Promise<void> {
     this.logger.info('🤖 AI optimization suggested', {
       moduleId: 'mcp-ecosystem',
       metadata: optimization,
@@ -500,7 +503,11 @@ export class MCPEcosystem extends EventEmitter {
   /**
    * Handle AI anomaly detection
    */
-  private async handleAIAnomaly(anomaly: { type: string; confidence: number; description: string }): Promise<void> {
+  private async handleAIAnomaly(anomaly: {
+    type: string;
+    confidence: number;
+    description: string;
+  }): Promise<void> {
     this.logger.warn('🔍 AI anomaly detected', {
       moduleId: 'mcp-ecosystem',
       metadata: anomaly,
@@ -525,8 +532,9 @@ export class MCPEcosystem extends EventEmitter {
    * Stop all servers gracefully
    */
   private async stopAllServers(): Promise<void> {
-    const runningServers = Array.from(this.servers.values())
-      .filter(server => server.status === 'running');
+    const runningServers = Array.from(this.servers.values()).filter(
+      server => server.status === 'running'
+    );
 
     const stopPromises = runningServers.map(server => this.stopServer(server.id));
     await Promise.all(stopPromises);
@@ -603,7 +611,9 @@ class AIOrchestrator extends EventEmitter {
     return this.running;
   }
 
-  async analyzeServerRegistration(_server: IMCPServer): Promise<{ shouldStart: boolean }> {
+  async analyzeServerRegistration(
+    _server: IMCPServer
+  ): Promise<{ shouldStart: boolean }> {
     return { shouldStart: true }; // Simplified logic
   }
 
@@ -612,7 +622,10 @@ class AIOrchestrator extends EventEmitter {
   }
 
   async runOptimization(): Promise<void> {
-    this.emit('optimization', { type: 'general', suggestion: 'System running optimally' });
+    this.emit('optimization', {
+      type: 'general',
+      suggestion: 'System running optimally',
+    });
   }
 }
 
@@ -651,4 +664,3 @@ class AutoScaler extends EventEmitter {
     this.logger.info('📊 Auto Scaler stopped', { moduleId: 'auto-scaler' });
   }
 }
-
