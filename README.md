@@ -1,6 +1,16 @@
 # MCP Ecosystem
 
-> Uma solução completa para desenvolvimento, gerenciamento e orquestração de servidores MCP (Model Context Protocol)
+Uma solução completa para desenvolvimento, gerenciamento e orquestração de servidores MCP (Model Context Protocol).
+
+## 🌐 Homepage
+
+**Acesse a homepage interativa:** [https://neo-sh1w4.github.io/cognition-mcp/](https://neo-sh1w4.github.io/cognition-mcp/)
+
+A homepage oferece:
+- 📊 Analytics em tempo real do protocolo MCP
+- 🏗️ Visualização da arquitetura distribuída
+- ⚡ Métricas de performance e orquestração
+- 🎨 Animações interativas e dashboard dinâmico
 
 ## 🎯 Visão Geral
 
