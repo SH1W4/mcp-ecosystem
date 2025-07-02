@@ -43,6 +43,33 @@ export interface CapabilityImplementation {
   validation: ValidationRule[];
 }
 
+export interface TemplateContent {
+  placeholders: Record<string, string>;
+  validation: {
+    requiredSections: string[];
+    maxLength: number;
+    minSections: number;
+  };
+}
+
+export interface TemplateMetadata {
+  version: string;
+  lastUpdated: string;
+  maintainer: string;
+  usage: string;
+}
+
+export interface NavigationPattern {
+  type: string;
+  placement: string;
+  format: string;
+}
+
+export interface StylingRule {
+  property: string;
+  value: string;
+}
+
 export interface DocumentationTemplate {
   id: string;
   name: string;
@@ -141,7 +168,8 @@ export type GuidelineCategory =
   | 'style'
   | 'naming'
   | 'localization'
-  | 'accessibility';
+  | 'accessibility'
+  | 'technical';
 
 export type EnforcementLevel = 'required' | 'recommended' | 'optional';
 
