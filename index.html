@@ -1,0 +1,831 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>MCP Ecosystem - Meta Catalyst Protocol Integration Platform</title>
+        <meta
+            name="description"
+            content="Advanced MCP ecosystem demonstrating intelligent orchestration, rule-based automation, and seamless integration with AI agents. Technical portfolio showcasing distributed protocol architecture."
+        />
+        <link rel="stylesheet" href="styles.css" />
+        <link rel="icon" type="image/x-icon" href="favicon.ico" />
+
+        <!-- Modern Fonts -->
+        <link rel="preconnect" href="https://fonts.googleapis.com" />
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+        <link
+            href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap"
+            rel="stylesheet"
+        />
+
+        <!-- Feather Icons -->
+        <script src="https://unpkg.com/feather-icons"></script>
+
+        <!-- Particles.js -->
+        <script src="https://cdn.jsdelivr.net/npm/particles.js@2.0.0/particles.min.js"></script>
+
+        <!-- AOS (Animate On Scroll) -->
+        <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet" />
+        <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+        <!-- Chart.js for analytics -->
+        <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    </head>
+    <body>
+        <header>
+            <nav class="navbar">
+                <div class="container">
+                    <div class="logo">
+                        <h1>MCP Ecosystem</h1>
+                    </div>
+                    <ul class="nav-menu">
+                        <li><a href="#home">Platform</a></li>
+                        <li><a href="#analysis">Analytics</a></li>
+                        <li><a href="#architecture">Architecture</a></li>
+                        <li><a href="#features">Capabilities</a></li>
+                        <li>
+                            <a href="https://github.com/NEO-SH1W4/cognition-mcp" class="btn-primary">GitHub</a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+        </header>
+
+        <main>
+            <!-- Hero Section -->
+            <section id="home" class="hero">
+                <div class="container">
+                    <!-- Data Flow Background Animation -->
+                    <canvas id="data-flow-canvas" class="data-flow-canvas"></canvas>
+
+                    <div class="hero-content">
+                        <h1>Meta Catalyst Protocol Ecosystem</h1>
+                        <p class="hero-subtitle">
+                            Advanced AI agent orchestration platform built on the Meta Catalyst Protocol.
+                            Demonstrating intelligent automation, rule-based processing, and seamless
+                            integration capabilities for next-generation conversational AI systems.
+                        </p>
+                        <div class="hero-buttons">
+                            <a href="#analysis" class="btn btn-primary"
+                                >View Analytics</a
+                            >
+                            <a href="#architecture" class="btn btn-secondary"
+                                >Architecture</a
+                            >
+                        </div>
+                    </div>
+
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-label">MCP Servers</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">15+</span>
+                            <span class="stat-label">AI Integrations</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-number">1000+</span>
+                            <span class="stat-label">Rules/Min</span>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Matrix Rain Effect -->
+            <canvas id="matrix-canvas" class="matrix-canvas"></canvas>
+
+            <!-- Analytics Section -->
+            <section id="analysis" class="metrics-dashboard">
+                <div class="container">
+                    <h2 class="section-title" data-aos="fade-up">
+                        MCP Ecosystem Performance Analytics
+                    </h2>
+                    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                        Real-time monitoring and analysis of MCP protocol performance,
+                        agent orchestration efficiency, and ecosystem scalability metrics
+                    </p>
+
+                    <div class="metrics-grid" data-aos="fade-up" data-aos-delay="200">
+                        <div
+                            class="metric-card"
+                            data-aos="zoom-in"
+                            data-aos-delay="300"
+                        >
+                            <div class="metric-header">
+                                <h3>Protocol Performance</h3>
+                                <span class="metric-status status-excellent"
+                                    >Optimal</span
+                                >
+                            </div>
+                            <div class="metric-chart">
+                                <canvas id="protocolChart" width="300" height="200"></canvas>
+                            </div>
+                            <div class="metric-stats">
+                                <div class="stat">
+                                    <span class="stat-value">99.8%</span>
+                                    <span class="stat-label">Uptime</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">~45ms</span>
+                                    <span class="stat-label">Avg Latency</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="metric-card"
+                            data-aos="zoom-in"
+                            data-aos-delay="400"
+                        >
+                            <div class="metric-header">
+                                <h3>Agent Orchestration</h3>
+                                <span class="metric-status status-growing"
+                                    >Scaling</span
+                                >
+                            </div>
+                            <div class="metric-chart">
+                                <canvas
+                                    id="orchestrationChart"
+                                    width="300"
+                                    height="200"
+                                ></canvas>
+                            </div>
+                            <div class="metric-stats">
+                                <div class="stat">
+                                    <span class="stat-value">89%</span>
+                                    <span class="stat-label">Success Rate</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">2.3K</span>
+                                    <span class="stat-label">Agents/Hour</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="metric-card"
+                            data-aos="zoom-in"
+                            data-aos-delay="500"
+                        >
+                            <div class="metric-header">
+                                <h3>Rule Engine Efficiency</h3>
+                                <span class="metric-status status-optimal"
+                                    >Optimized</span
+                                >
+                            </div>
+                            <div class="metric-chart">
+                                <canvas
+                                    id="rulesChart"
+                                    width="300"
+                                    height="200"
+                                ></canvas>
+                            </div>
+                            <div class="metric-stats">
+                                <div class="stat">
+                                    <span class="stat-value">94%</span>
+                                    <span class="stat-label">Rule Accuracy</span>
+                                </div>
+                                <div class="stat">
+                                    <span class="stat-value">12ms</span>
+                                    <span class="stat-label">Eval Time</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div
+                        class="enterprise-features"
+                        data-aos="fade-up"
+                        data-aos-delay="600"
+                    >
+                        <div class="enterprise-grid">
+                            <div class="enterprise-item">
+                                <i
+                                    data-feather="cpu"
+                                    class="enterprise-icon"
+                                ></i>
+                                <h4>Intelligent Orchestration</h4>
+                                <p>
+                                    Advanced AI agent coordination with dynamic load balancing,
+                                    failover mechanisms, and intelligent resource allocation
+                                </p>
+                            </div>
+                            <div class="enterprise-item">
+                                <i data-feather="zap" class="enterprise-icon"></i>
+                                <h4>Rule-Based Automation</h4>
+                                <p>
+                                    Sophisticated rule engine supporting complex business logic,
+                                    conditional workflows, and real-time decision making
+                                </p>
+                            </div>
+                            <div class="enterprise-item">
+                                <i data-feather="shield" class="enterprise-icon"></i>
+                                <h4>Security Framework</h4>
+                                <p>
+                                    Enterprise-grade security with OAuth integration, encrypted
+                                    communications, and comprehensive audit logging
+                                </p>
+                            </div>
+                            <div class="enterprise-item">
+                                <i data-feather="activity" class="enterprise-icon"></i>
+                                <h4>Performance Monitoring</h4>
+                                <p>
+                                    Real-time observability with distributed tracing, metrics
+                                    collection, and intelligent alerting systems
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Architecture Section -->
+            <section id="architecture" class="architecture-section">
+                <div class="container">
+                    <h2 class="section-title" data-aos="fade-up">
+                        Distributed Protocol Architecture
+                    </h2>
+                    <p class="section-subtitle" data-aos="fade-up" data-aos-delay="100">
+                        Multi-layered architecture designed for scalability, resilience,
+                        and intelligent agent orchestration in distributed environments
+                    </p>
+
+                    <div
+                        class="architecture-diagram"
+                        data-aos="fade-up"
+                        data-aos-delay="200"
+                    >
+                        <div
+                            class="architecture-layer"
+                            data-aos="slide-right"
+                            data-aos-delay="300"
+                        >
+                            <div class="layer-title">
+                                <i data-feather="users" class="layer-icon"></i>
+                                <h3>Agent Layer</h3>
+                            </div>
+                            <div class="layer-components">
+                                <div class="component">
+                                    <i data-feather="brain"></i>
+                                    <span>AI Agents</span>
+                                </div>
+                                <div class="component">
+                                    <i data-feather="message-circle"></i>
+                                    <span>Conversational UI</span>
+                                </div>
+                                <div class="component">
+                                    <i data-feather="command"></i>
+                                    <span>Tool Interfaces</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="architecture-arrow"
+                            data-aos="fade-in"
+                            data-aos-delay="400"
+                        >
+                            <i data-feather="arrow-down"></i>
+                        </div>
+
+                        <div
+                            class="architecture-layer"
+                            data-aos="slide-left"
+                            data-aos-delay="500"
+                        >
+                            <div class="layer-title">
+                                <i data-feather="grid" class="layer-icon"></i>
+                                <h3>MCP Protocol</h3>
+                            </div>
+                            <div class="layer-components">
+                                <div class="component">
+                                    <i data-feather="shuffle"></i>
+                                    <span>Message Router</span>
+                                </div>
+                                <div class="component">
+                                    <i data-feather="settings"></i>
+                                    <span>Protocol Handler</span>
+                                </div>
+                                <div class="component">
+                                    <i data-feather="share-2"></i>
+                                    <span>Connection Manager</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="architecture-arrow"
+                            data-aos="fade-in"
+                            data-aos-delay="600"
+                        >
+                            <i data-feather="arrow-down"></i>
+                        </div>
+
+                        <div
+                            class="architecture-layer"
+                            data-aos="slide-right"
+                            data-aos-delay="700"
+                        >
+                            <div class="layer-title">
+                                <i data-feather="cpu" class="layer-icon"></i>
+                                <h3>Orchestration Layer</h3>
+                            </div>
+                            <div class="layer-components">
+                                <div class="component">
+                                    <i data-feather="target"></i>
+                                    <span>Rules Engine</span>
+                                </div>
+                                <div class="component">
+                                    <i data-feather="repeat"></i>
+                                    <span>Workflow Manager</span>
+                                </div>
+                                <div class="component">
+                                    <i data-feather="trending-up"></i>
+                                    <span>Load Balancer</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div
+                            class="architecture-arrow"
+                            data-aos="fade-in"
+                            data-aos-delay="800"
+                        >
+                            <i data-feather="arrow-down"></i>
+                        </div>
+
+                        <div
+                            class="architecture-layer"
+                            data-aos="slide-left"
+                            data-aos-delay="900"
+                        >
+                            <div class="layer-title">
+                                <i data-feather="server" class="layer-icon"></i>
+                                <h3>Infrastructure Layer</h3>
+                            </div>
+                            <div class="layer-components">
+                                <div class="component">
+                                    <i data-feather="hard-drive"></i>
+                                    <span>Storage Engine</span>
+                                </div>
+                                <div class="component">
+                                    <i data-feather="file-text"></i>
+                                    <span>Event Store</span>
+                                </div>
+                                <div class="component">
+                                    <i data-feather="bar-chart"></i>
+                                    <span>Metrics Hub</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="tech-stack" data-aos="fade-up" data-aos-delay="1000">
+                        <h3>Technology Stack</h3>
+                        <div class="tech-grid">
+                            <div class="tech-item">
+                                <div class="tech-logo">TypeScript</div>
+                                <div class="tech-info">
+                                    <h4>Core Language</h4>
+                                    <p>
+                                        Type-safe development with advanced async patterns
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="tech-item">
+                                <div class="tech-logo">Node.js</div>
+                                <div class="tech-info">
+                                    <h4>Runtime</h4>
+                                    <p>High-performance JavaScript runtime for MCP services</p>
+                                </div>
+                            </div>
+                            <div class="tech-item">
+                                <div class="tech-logo">Python</div>
+                                <div class="tech-info">
+                                    <h4>AI Integration</h4>
+                                    <p>Machine learning and AI model integration layer</p>
+                                </div>
+                            </div>
+                            <div class="tech-item">
+                                <div class="tech-logo">Docker</div>
+                                <div class="tech-info">
+                                    <h4>Containerization</h4>
+                                    <p>Scalable microservices deployment architecture</p>
+                                </div>
+                            </div>
+                            <div class="tech-item">
+                                <div class="tech-logo">WebSocket</div>
+                                <div class="tech-info">
+                                    <h4>Real-time Comm</h4>
+                                    <p>Low-latency bidirectional communication protocol</p>
+                                </div>
+                            </div>
+                            <div class="tech-item">
+                                <div class="tech-logo">gRPC</div>
+                                <div class="tech-info">
+                                    <h4>Service Mesh</h4>
+                                    <p>High-performance inter-service communication</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Features Section -->
+            <section id="features" class="features">
+                <div class="container">
+                    <h2 class="section-title">Platform Capabilities</h2>
+                    <div class="features-grid">
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i data-feather="grid"></i>
+                            </div>
+                            <h3>MCP Server Framework</h3>
+                            <p>
+                                Comprehensive Meta Catalyst Protocol server implementation
+                                with advanced agent orchestration, intelligent routing,
+                                and real-time communication capabilities.
+                            </p>
+                            <ul class="feature-list">
+                                <li>Protocol-compliant message handling</li>
+                                <li>Dynamic agent registration and discovery</li>
+                                <li>Load balancing and failover mechanisms</li>
+                                <li>Comprehensive monitoring and observability</li>
+                            </ul>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i data-feather="target"></i>
+                            </div>
+                            <h3>Intelligent Rules Engine</h3>
+                            <p>
+                                Advanced rule-based automation system with support for
+                                complex business logic, conditional workflows, and
+                                real-time decision making capabilities.
+                            </p>
+                            <ul class="feature-list">
+                                <li>Dynamic rule creation and modification</li>
+                                <li>Context-aware condition evaluation</li>
+                                <li>Action chaining and workflow orchestration</li>
+                                <li>Performance optimization and caching</li>
+                            </ul>
+                        </div>
+
+                        <div class="feature-card">
+                            <div class="feature-icon">
+                                <i data-feather="cpu"></i>
+                            </div>
+                            <h3>SAGE Integration Platform</h3>
+                            <p>
+                                Seamless integration with AI agent frameworks including
+                                WARP terminal integration, rule synchronization, and
+                                intelligent agent coordination capabilities.
+                            </p>
+                            <ul class="feature-list">
+                                <li>WARP Rules client integration</li>
+                                <li>Agent context management</li>
+                                <li>Real-time rule synchronization</li>
+                                <li>Distributed caching and state management</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+        </main>
+
+        <footer>
+            <div class="container">
+                <div class="footer-content">
+                    <div class="footer-section">
+                        <h4>MCP Ecosystem</h4>
+                        <p>
+                            Advanced Meta Catalyst Protocol platform demonstrating
+                            intelligent agent orchestration and distributed protocol
+                            architecture for next-generation AI systems.
+                        </p>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Platform</h4>
+                        <ul>
+                            <li><a href="#analysis">Performance Analytics</a></li>
+                            <li><a href="#architecture">System Architecture</a></li>
+                            <li><a href="#features">Platform Capabilities</a></li>
+                        </ul>
+                    </div>
+                    <div class="footer-section">
+                        <h4>Resources</h4>
+                        <ul>
+                            <li><a href="README.md">Documentation</a></li>
+                            <li><a href="TASKS.md">Development Roadmap</a></li>
+                            <li>
+                                <a href="https://modelcontextprotocol.io/docs"
+                                    >MCP Protocol Docs</a
+                                >
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="footer-bottom">
+                    <p>
+                        &copy; 2025 MCP Ecosystem Platform. Demonstrating advanced
+                        Meta Catalyst Protocol integration and AI agent orchestration.
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+        <script>
+            // Initialize AOS (Animate On Scroll)
+            AOS.init({
+                duration: 1000,
+                once: true,
+                offset: 100,
+            });
+
+            // Initialize Feather Icons
+            feather.replace();
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({
+                            behavior: 'smooth',
+                            block: 'start',
+                        });
+                    }
+                });
+            });
+
+            // Data Flow Animation for Hero Background
+            function initDataFlow() {
+                const canvas = document.getElementById('data-flow-canvas');
+                if (!canvas) return;
+
+                const ctx = canvas.getContext('2d');
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+
+                window.addEventListener('resize', () => {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                });
+
+                const nodes = [];
+                const connections = [];
+                const nodeCount = 60;
+
+                // Create nodes representing MCP protocol connections
+                for (let i = 0; i < nodeCount; i++) {
+                    nodes.push({
+                        x: Math.random() * canvas.width,
+                        y: Math.random() * canvas.height,
+                        vx: (Math.random() - 0.5) * 0.3,
+                        vy: (Math.random() - 0.5) * 0.3,
+                        radius: Math.random() * 4 + 2,
+                        opacity: Math.random() * 0.6 + 0.3,
+                        type: Math.random() > 0.7 ? 'agent' : 'server'
+                    });
+                }
+
+                function animate() {
+                    ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+                    // Update and draw nodes
+                    nodes.forEach(node => {
+                        node.x += node.vx;
+                        node.y += node.vy;
+
+                        if (node.x < 0 || node.x > canvas.width) node.vx *= -1;
+                        if (node.y < 0 || node.y > canvas.height) node.vy *= -1;
+
+                        // Draw node with different colors for agents vs servers
+                        ctx.beginPath();
+                        ctx.arc(node.x, node.y, node.radius, 0, Math.PI * 2);
+                        const color = node.type === 'agent' ? '255, 107, 53' : '88, 166, 255';
+                        ctx.fillStyle = `rgba(${color}, ${node.opacity})`;
+                        ctx.fill();
+
+                        // Add glow effect for agents
+                        if (node.type === 'agent') {
+                            ctx.shadowColor = `rgba(${color}, 0.8)`;
+                            ctx.shadowBlur = 10;
+                            ctx.fill();
+                            ctx.shadowBlur = 0;
+                        }
+                    });
+
+                    // Draw connections (protocol messages)
+                    for (let i = 0; i < nodes.length; i++) {
+                        for (let j = i + 1; j < nodes.length; j++) {
+                            const dx = nodes[i].x - nodes[j].x;
+                            const dy = nodes[i].y - nodes[j].y;
+                            const distance = Math.sqrt(dx * dx + dy * dy);
+
+                            if (distance < 120) {
+                                ctx.beginPath();
+                                ctx.moveTo(nodes[i].x, nodes[i].y);
+                                ctx.lineTo(nodes[j].x, nodes[j].y);
+                                ctx.strokeStyle = `rgba(88, 166, 255, ${0.2 * (1 - distance / 120)})`;
+                                ctx.lineWidth = 1;
+                                ctx.stroke();
+                            }
+                        }
+                    }
+
+                    requestAnimationFrame(animate);
+                }
+
+                animate();
+            }
+
+            // Matrix Rain Effect with MCP Protocol symbols
+            function initMatrixRain() {
+                const canvas = document.getElementById('matrix-canvas');
+                if (!canvas) return;
+
+                const ctx = canvas.getContext('2d');
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+
+                window.addEventListener('resize', () => {
+                    canvas.width = window.innerWidth;
+                    canvas.height = window.innerHeight;
+                });
+
+                const mcpChars = 'MCPツールルートプロトコルエージェント{}[]|\\:";\'<>?,.!@#$%^&*()_+-=0123456789ABCDEFGHIJKLMNOPQRSTUVWXYZツール';
+                const chars = mcpChars.split('');
+                const fontSize = 14;
+                const columns = canvas.width / fontSize;
+                const drops = [];
+
+                for (let i = 0; i < columns; i++) {
+                    drops[i] = Math.random() * canvas.height;
+                }
+
+                const mcpColors = [
+                    '#ff6b35',  // MCP Orange
+                    '#58a6ff',  // Protocol Blue
+                    '#3fb950',  // Success Green
+                    '#38bdf8',  // Cyan
+                    '#a855f7',  // Purple
+                ];
+
+                function drawMatrix() {
+                    ctx.fillStyle = 'rgba(13, 17, 23, 0.06)';
+                    ctx.fillRect(0, 0, canvas.width, canvas.height);
+
+                    ctx.font = `${fontSize}px 'JetBrains Mono', monospace`;
+
+                    for (let i = 0; i < drops.length; i++) {
+                        const char = chars[Math.floor(Math.random() * chars.length)];
+                        const opacity = Math.random() * 0.8 + 0.2;
+                        const colorIndex = Math.floor(Math.random() * mcpColors.length);
+
+                        if (Math.random() > 0.97) {
+                            ctx.shadowColor = mcpColors[colorIndex];
+                            ctx.shadowBlur = 15;
+                        } else {
+                            ctx.shadowBlur = 0;
+                        }
+
+                        ctx.fillStyle = mcpColors[colorIndex] + Math.floor(opacity * 255).toString(16).padStart(2, '0');
+                        ctx.fillText(char, i * fontSize, drops[i]);
+
+                        drops[i] += fontSize;
+
+                        if (drops[i] > canvas.height && Math.random() > 0.975) {
+                            drops[i] = 0;
+                        }
+                    }
+                }
+
+                function animate() {
+                    drawMatrix();
+                    requestAnimationFrame(animate);
+                }
+
+                animate();
+            }
+
+            // Initialize Charts with MCP-specific metrics
+            function initializeCharts() {
+                // MCP Protocol Performance
+                const protocolCtx = document.getElementById('protocolChart');
+                if (protocolCtx) {
+                    new Chart(protocolCtx, {
+                        type: 'line',
+                        data: {
+                            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                            datasets: [
+                                {
+                                    label: 'Message Latency (ms)',
+                                    data: [65, 59, 48, 42, 39, 35],
+                                    borderColor: '#ff6b35',
+                                    backgroundColor: 'rgba(255, 107, 53, 0.1)',
+                                    tension: 0.4,
+                                    fill: true,
+                                },
+                            ],
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: { legend: { display: false } },
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    grid: { color: '#30363d' },
+                                    ticks: { color: '#8b949e' },
+                                },
+                                x: {
+                                    grid: { color: '#30363d' },
+                                    ticks: { color: '#8b949e' },
+                                },
+                            },
+                        },
+                    });
+                }
+
+                // Agent Orchestration Metrics
+                const orchestrationCtx = document.getElementById('orchestrationChart');
+                if (orchestrationCtx) {
+                    new Chart(orchestrationCtx, {
+                        type: 'bar',
+                        data: {
+                            labels: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun'],
+                            datasets: [
+                                {
+                                    label: 'Active Agents',
+                                    data: [120, 190, 230, 250, 280, 320],
+                                    backgroundColor: 'rgba(88, 166, 255, 0.8)',
+                                    borderColor: '#58a6ff',
+                                    borderWidth: 1,
+                                },
+                            ],
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: { legend: { display: false } },
+                            scales: {
+                                y: {
+                                    beginAtZero: true,
+                                    grid: { color: '#30363d' },
+                                    ticks: { color: '#8b949e' },
+                                },
+                                x: {
+                                    grid: { color: '#30363d' },
+                                    ticks: { color: '#8b949e' },
+                                },
+                            },
+                        },
+                    });
+                }
+
+                // Rules Engine Performance
+                const rulesCtx = document.getElementById('rulesChart');
+                if (rulesCtx) {
+                    new Chart(rulesCtx, {
+                        type: 'doughnut',
+                        data: {
+                            labels: ['Successful', 'Failed', 'Pending'],
+                            datasets: [
+                                {
+                                    data: [94, 4, 2],
+                                    backgroundColor: ['#3fb950', '#f85149', '#ffb84d'],
+                                    borderWidth: 2,
+                                    borderColor: '#161b22',
+                                },
+                            ],
+                        },
+                        options: {
+                            responsive: true,
+                            maintainAspectRatio: false,
+                            plugins: {
+                                legend: {
+                                    position: 'bottom',
+                                    labels: { color: '#8b949e', padding: 15 },
+                                },
+                            },
+                        },
+                    });
+                }
+            }
+
+            // Initialize when page loads
+            window.addEventListener('load', () => {
+                setTimeout(initDataFlow, 500);
+                setTimeout(initMatrixRain, 700);
+                setTimeout(initializeCharts, 1000);
+            });
+        </script>
+    </body>
+</html>
+

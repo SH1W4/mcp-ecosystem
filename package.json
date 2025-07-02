@@ -18,7 +18,9 @@
     "clean": "rimraf dist coverage",
     "typecheck": "tsc --noEmit",
     "prepare": "husky install",
-    "pre-commit": "lint-staged"
+    "pre-commit": "lint-staged",
+    "serve": "node serve-homepage.js",
+    "homepage": "node serve-homepage.js"
   },
   "keywords": [
     "mcp",
