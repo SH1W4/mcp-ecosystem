@@ -2,9 +2,9 @@
 
 /**
  * MCP Ecosystem - Entry Point
- * 
+ *
  * Uma solução completa para desenvolvimento, gerenciamento e orquestração de servidores MCP
- * 
+ *
  * @author JX
  * @version 0.1.0
  */
@@ -67,7 +67,6 @@ async function main(): Promise<void> {
       logger.error('❌ Unhandled Rejection:', reason as Error);
       handleShutdown().catch(() => process.exit(1));
     });
-
   } catch (error) {
     logger.error('❌ Falha na inicialização do MCP Ecosystem:', error as Error);
     process.exit(1);
@@ -83,4 +82,3 @@ if (require.main === module) {
 }
 
 export { MCPEcosystem };
-

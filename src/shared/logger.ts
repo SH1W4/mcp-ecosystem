@@ -1,9 +1,9 @@
 /**
  * Intelligent Logger with AI Context
- * 
+ *
  * Um sistema de logging revolucionário que não apenas registra eventos,
  * mas entende o contexto e fornece insights inteligentes sobre o sistema.
- * 
+ *
  * @features
  * - Análise contextual de logs
  * - Detecção automática de padrões
@@ -79,7 +79,11 @@ export class Logger extends EventEmitter {
     this.log('warn', message, context);
   }
 
-  public error(message: string, error?: Error, context: Partial<ILogContext> = {}): void {
+  public error(
+    message: string,
+    error?: Error,
+    context: Partial<ILogContext> = {}
+  ): void {
     const fullContext = error ? { ...context, error: error.message } : context;
     this.log('error', message, fullContext, error?.stack);
   }
@@ -139,9 +143,7 @@ export class Logger extends EventEmitter {
    * Get correlated logs for debugging
    */
   public getCorrelatedLogs(correlationId: string): IIntelligentLogEntry[] {
-    return this.logBuffer.filter(
-      log => log.context.correlationId === correlationId
-    );
+    return this.logBuffer.filter(log => log.context.correlationId === correlationId);
   }
 
   /**
@@ -295,9 +297,7 @@ class LogAnalyticsEngine {
     timeWindow: number
   ): IIntelligentLogEntry[] {
     const cutoff = new Date(Date.now() - timeWindow);
-    return history.filter(
-      log => log.level === 'error' && log.timestamp >= cutoff
-    );
+    return history.filter(log => log.level === 'error' && log.timestamp >= cutoff);
   }
 
   private analyzePerformance(
@@ -305,10 +305,11 @@ class LogAnalyticsEngine {
     _history: IIntelligentLogEntry[]
   ): ILogAnalytics | undefined {
     // Look for performance-related keywords
-    if (entry.message.toLowerCase().includes('slow') ||
-        entry.message.toLowerCase().includes('timeout') ||
-        entry.message.toLowerCase().includes('performance')) {
-      
+    if (
+      entry.message.toLowerCase().includes('slow') ||
+      entry.message.toLowerCase().includes('timeout') ||
+      entry.message.toLowerCase().includes('performance')
+    ) {
       return {
         pattern: 'performance_issue',
         confidence: 0.8,
@@ -348,4 +349,3 @@ class LogAnalyticsEngine {
     return errorCount / logs.length;
   }
 }
-

@@ -1,0 +1,172 @@
+{
+  "id": "mcp-core-rules",
+  "name": "Regras Principais do MCP_ECOSYSTEM",
+  "description": "Conjunto de regras fundamentais para funcionamento do MCP_ECOSYSTEM",
+  "version": "1.0.0",
+  "rules": [
+    {
+      "metadata": {
+        "id": "core-security-01",
+        "name": "Bloqueio de Comandos Perigosos",
+        "description": "Impede execução de comandos que podem danificar o sistema",
+        "version": "1.0.0",
+        "author": "MCP_ECOSYSTEM",
+        "createdAt": "2025-01-01T16:53:00.000Z",
+        "updatedAt": "2025-01-01T16:53:00.000Z",
+        "tags": ["security", "system", "core"]
+      },
+      "type": "security",
+      "priority": 20,
+      "status": "active",
+      "conditions": [
+        {
+          "field": "toolContext.toolName",
+          "operator": "equals",
+          "value": "run_command"
+        },
+        {
+          "field": "toolContext.parameters.command",
+          "operator": "regex",
+          "value": "(rm\\s+-rf|del\\s+/[sf]|format\\s+[c-z]:|shutdown|halt|reboot)"
+        }
+      ],
+      "actions": [
+        {
+          "type": "block",
+          "message": "Comando bloqueado por política de segurança"
+        },
+        {
+          "type": "log",
+          "message": "Tentativa de execução de comando perigoso bloqueada",
+          "parameters": {
+            "severity": "high",
+            "category": "security_violation"
+          }
+        }
+      ],
+      "scope": ["tools", "mcp"],
+      "environment": ["dev", "staging", "prod"]
+    },
+    {
+      "metadata": {
+        "id": "core-validation-01",
+        "name": "Validação de Parâmetros MCP",
+        "description": "Valida se parâmetros obrigatórios estão presentes nas requisições MCP",
+        "version": "1.0.0",
+        "author": "MCP_ECOSYSTEM",
+        "createdAt": "2025-01-01T16:53:00.000Z",
+        "updatedAt": "2025-01-01T16:53:00.000Z",
+        "tags": ["validation", "mcp", "core"]
+      },
+      "type": "validation",
+      "priority": 10,
+      "status": "active",
+      "conditions": [
+        {
+          "field": "mcpRequest.method",
+          "operator": "equals",
+          "value": "tools/call"
+        },
+        {
+          "field": "mcpRequest.params.name",
+          "operator": "equals",
+          "value": null,
+          "negate": true
+        }
+      ],
+      "actions": [
+        {
+          "type": "block",
+          "message": "Parâmetro 'name' é obrigatório para chamadas de ferramentas"
+        }
+      ],
+      "scope": ["mcp"],
+      "environment": ["dev", "staging", "prod"]
+    },
+    {
+      "metadata": {
+        "id": "core-performance-01",
+        "name": "Monitor de Performance",
+        "description": "Monitora e alerta sobre execuções que demoram muito tempo",
+        "version": "1.0.0",
+        "author": "MCP_ECOSYSTEM",
+        "createdAt": "2025-01-01T16:53:00.000Z",
+        "updatedAt": "2025-01-01T16:53:00.000Z",
+        "tags": ["performance", "monitoring", "core"]
+      },
+      "type": "performance",
+      "priority": 1,
+      "status": "active",
+      "conditions": [
+        {
+          "field": "toolContext.executionTime",
+          "operator": "gt",
+          "value": 10000
+        }
+      ],
+      "actions": [
+        {
+          "type": "log",
+          "message": "Execução de ferramenta demorou mais que 10 segundos",
+          "parameters": {
+            "severity": "warning",
+            "category": "performance",
+            "threshold": 10000
+          }
+        }
+      ],
+      "scope": ["tools"],
+      "environment": ["dev", "staging", "prod"]
+    },
+    {
+      "metadata": {
+        "id": "core-access-01",
+        "name": "Controle de Acesso a Recursos",
+        "description": "Controla acesso a recursos baseado em permissões de usuário",
+        "version": "1.0.0",
+        "author": "MCP_ECOSYSTEM",
+        "createdAt": "2025-01-01T16:53:00.000Z",
+        "updatedAt": "2025-01-01T16:53:00.000Z",
+        "tags": ["security", "access", "resources"]
+      },
+      "type": "security",
+      "priority": 15,
+      "status": "active",
+      "conditions": [
+        {
+          "field": "resourceContext.operation",
+          "operator": "equals",
+          "value": "write"
+        },
+        {
+          "field": "userRoles",
+          "operator": "contains",
+          "value": "admin",
+          "negate": true
+        }
+      ],
+      "actions": [
+        {
+          "type": "block",
+          "message": "Acesso negado: operação de escrita requer permissões de administrador"
+        },
+        {
+          "type": "log",
+          "message": "Tentativa de acesso não autorizado a recurso",
+          "parameters": {
+            "severity": "medium",
+            "category": "access_denied"
+          }
+        }
+      ],
+      "scope": ["resources"],
+      "environment": ["staging", "prod"]
+    }
+  ],
+  "dependencies": [],
+  "metadata": {
+    "createdAt": "2025-01-01T16:53:00.000Z",
+    "updatedAt": "2025-01-01T16:53:00.000Z",
+    "author": "MCP_ECOSYSTEM"
+  }
+}
