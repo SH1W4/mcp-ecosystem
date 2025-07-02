@@ -124,6 +124,75 @@ await sageManager.registerAgent({
 
 ## 🧩 Platform Components
 
+### Architecture Overview
+
+```mermaid
+graph TB
+    subgraph "Client Layer"
+        CLI[🖥️ CLI Tools]
+        WEB[🌐 Web Dashboard]
+        SDK[📦 Client SDKs]
+        AGENTS[🤖 AI Agents]
+    end
+
+    subgraph "MCP Protocol Layer"
+        GATEWAY[🚪 API Gateway]
+        ROUTER[🔀 Message Router]
+        HANDLER[⚙️ Protocol Handler]
+    end
+
+    subgraph "Core Platform"
+        SERVER[🤖 MCP Server Framework]
+        RULES[⚡ Rules Engine]
+        SAGE[🔗 SAGE Integration]
+        ORCH[🏗️ Orchestration Layer]
+    end
+
+    subgraph "Analytics & Security"
+        DASH[📊 Analytics Dashboard]
+        MONITOR[📈 Performance Monitor]
+        SEC[🛡️ Security Framework]
+        AUDIT[📋 Audit Logger]
+    end
+
+    subgraph "Infrastructure"
+        CACHE[💾 Distributed Cache]
+        DB[(🗄️ Database)]
+        QUEUE[📮 Message Queue]
+        METRICS[📊 Metrics Store]
+    end
+
+    CLI --> GATEWAY
+    WEB --> GATEWAY
+    SDK --> GATEWAY
+    AGENTS --> GATEWAY
+
+    GATEWAY --> ROUTER
+    ROUTER --> HANDLER
+    HANDLER --> SERVER
+
+    SERVER --> RULES
+    RULES --> SAGE
+    SAGE --> ORCH
+
+    ORCH --> DASH
+    DASH --> MONITOR
+    MONITOR --> SEC
+    SEC --> AUDIT
+
+    SERVER --> CACHE
+    RULES --> DB
+    SAGE --> QUEUE
+    DASH --> METRICS
+
+    style SERVER fill:#ff6b35,stroke:#333,stroke-width:3px
+    style RULES fill:#58a6ff,stroke:#333,stroke-width:3px
+    style SAGE fill:#3fb950,stroke:#333,stroke-width:3px
+    style DASH fill:#a855f7,stroke:#333,stroke-width:3px
+```
+
+### Component Status
+
 || Component | Status | Description |
 ||-----------|--------|-------------|
 || 🤖 **MCP Server Framework** | ✅ Complete | Protocol-compliant server implementation |
