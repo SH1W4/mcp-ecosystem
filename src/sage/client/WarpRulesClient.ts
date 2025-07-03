@@ -114,7 +114,7 @@ export class WarpRulesClient extends EventEmitter {
   /**
    * Fetch rules from WARP API with caching support
    */
-  async fetchRules(useCache = true): Promise<RuleSet> {
+  async fetchRules(agentId?: string, useCache = true): Promise<RuleSet> {
     await this.ensureAuthenticated();
 
     const cacheKey = 'rules_set';
@@ -337,7 +337,7 @@ export class WarpRulesClient extends EventEmitter {
       if (!this.monitoringActive) return;
 
       try {
-        const rules = await this.fetchRules(true);
+        const rules = await this.fetchRules(undefined, true);
         // Check if version changed
         const cachedVersion = this.cache.getMetadata('rules_set')?.version;
         if (cachedVersion && rules.version !== cachedVersion) {
@@ -385,7 +385,6 @@ export class WarpRulesClient extends EventEmitter {
       try {
         const response = await fetch(url, {
           ...options,
-          timeout: this.config.timeout_ms,
         });
 
         const result: WarpAPIResponse<T> = {
@@ -396,7 +395,7 @@ export class WarpRulesClient extends EventEmitter {
 
         if (response.ok) {
           if (response.status !== 204) {
-            result.data = await response.json();
+            result.data = await response.json() as T;
           }
         } else {
           const errorText = await response.text();

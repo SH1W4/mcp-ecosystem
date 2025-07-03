@@ -12,7 +12,6 @@
  * - Alertas preditivos
  */
 
-import winston from 'winston';
 import { EventEmitter } from 'events';
 
 export interface ILogContext {
@@ -22,6 +21,16 @@ export interface ILogContext {
   readonly operationId?: string;
   readonly correlationId?: string;
   readonly metadata?: Record<string, unknown>;
+  // Additional properties for ServerFramework compatibility
+  readonly ip?: string;
+  readonly code?: string | number;
+  readonly connectionId?: string;
+  readonly name?: string;
+  readonly description?: string;
+  readonly timeout?: number;
+  readonly userAgent?: string;
+  readonly reason?: string;
+  readonly messageId?: string;
 }
 
 export interface ILogAnalytics {
@@ -46,14 +55,14 @@ export interface IIntelligentLogEntry {
  */
 export class Logger extends EventEmitter {
   private static instance: Logger;
-  private readonly winston: winston.Logger;
+  private readonly console: Console;
   private readonly logBuffer: IIntelligentLogEntry[] = [];
   private readonly maxBufferSize = 1000;
   private readonly analyticsEngine: LogAnalyticsEngine;
 
   private constructor() {
     super();
-    this.winston = this.createWinstonLogger();
+    this.console = console;
     this.analyticsEngine = new LogAnalyticsEngine();
     this.setupAnalytics();
   }
@@ -120,12 +129,8 @@ export class Logger extends EventEmitter {
       this.emit('analytics', analytics);
     }
 
-    // Winston logging
-    this.winston.log(level, message, {
-      context,
-      analytics,
-      stackTrace,
-    });
+    // Console logging
+    this.logToConsole(level, message, { context, analytics, stackTrace });
 
     // Emit events for reactive components
     this.emit('log', logEntry);
@@ -175,39 +180,36 @@ export class Logger extends EventEmitter {
   private setupAnalytics(): void {
     this.on('analytics', (analytics: ILogAnalytics) => {
       if (analytics.severity === 'error') {
-        this.winston.error(`🤖 AI Alert: ${analytics.suggestion}`, { analytics });
+        this.console.error(`🤖 AI Alert: ${analytics.suggestion}`, { analytics });
       } else if (analytics.severity === 'warning') {
-        this.winston.warn(`🤖 AI Insight: ${analytics.suggestion}`, { analytics });
+        this.console.warn(`🤖 AI Insight: ${analytics.suggestion}`, { analytics });
       }
     });
   }
 
   /**
-   * Create Winston logger instance
+   * Log to console with formatting
    */
-  private createWinstonLogger(): winston.Logger {
-    return winston.createLogger({
-      level: process.env['LOG_LEVEL'] || 'info',
-      format: winston.format.combine(
-        winston.format.timestamp(),
-        winston.format.errors({ stack: true }),
-        winston.format.json(),
-        winston.format.prettyPrint()
-      ),
-      transports: [
-        new winston.transports.Console({
-          format: winston.format.combine(
-            winston.format.colorize(),
-            winston.format.simple()
-          ),
-        }),
-        new winston.transports.File({
-          filename: 'logs/mcp-ecosystem.log',
-          maxsize: 5242880, // 5MB
-          maxFiles: 5,
-        }),
-      ],
-    });
+  private logToConsole(level: string, message: string, data: any): void {
+    const timestamp = new Date().toISOString();
+    const formattedMessage = `[${timestamp}] ${level.toUpperCase()}: ${message}`;
+    
+    switch (level) {
+      case 'debug':
+        this.console.debug(formattedMessage, data);
+        break;
+      case 'info':
+        this.console.info(formattedMessage, data);
+        break;
+      case 'warn':
+        this.console.warn(formattedMessage, data);
+        break;
+      case 'error':
+        this.console.error(formattedMessage, data);
+        break;
+      default:
+        this.console.log(formattedMessage, data);
+    }
   }
 
   private generateSessionId(): string {
@@ -349,3 +351,6 @@ class LogAnalyticsEngine {
     return errorCount / logs.length;
   }
 }
+
+// Export singleton instance
+export const logger = Logger.getInstance();

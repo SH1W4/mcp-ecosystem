@@ -862,18 +862,19 @@ export const ENTERPRISE_DOCUMENTATION_PATTERN: DocumentationPattern = {
  * and provides recommendations for improvement.
  */
 export class DocumentationPatternAnalyzer {
-  private pattern: DocumentationPattern;
+  private _pattern: DocumentationPattern;
   
   constructor(pattern: DocumentationPattern = ENTERPRISE_DOCUMENTATION_PATTERN) {
-    this.pattern = pattern;
+    this._pattern = pattern;
   }
   
   /**
    * Analyzes a documentation structure and returns compliance score
    */
-  analyzeDocumentation(documentationPath: string): DocumentationAnalysis {
+  analyzeDocumentation(_documentationPath: string): DocumentationAnalysis {
     // Implementation would analyze actual documentation files
     // and return compliance score and recommendations
+    // TODO: Use _documentationPath to analyze actual files
     
     return {
       overallScore: 0,
@@ -887,9 +888,10 @@ export class DocumentationPatternAnalyzer {
   /**
    * Generates documentation structure based on pattern
    */
-  generateDocumentationStructure(projectConfig: ProjectConfig): DocumentationStructure {
+  generateDocumentationStructure(_projectConfig: ProjectConfig): DocumentationStructure {
     // Implementation would generate complete documentation structure
     // based on project configuration and pattern templates
+    // TODO: Use _projectConfig to generate structure
     
     return {
       rootFiles: [],
@@ -902,9 +904,10 @@ export class DocumentationPatternAnalyzer {
   /**
    * Validates existing documentation against pattern rules
    */
-  validateDocumentation(filePath: string): ValidationResult[] {
+  validateDocumentation(_filePath: string): ValidationResult[] {
     // Implementation would validate individual files against
     // pattern guidelines and return specific violations
+    // TODO: Use _filePath to validate files
     
     return [];
   }

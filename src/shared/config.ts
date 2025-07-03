@@ -509,3 +509,6 @@ class ConfigAdaptationEngine {
     return optimizations;
   }
 }
+
+// Export singleton instance for direct use
+export const config = ConfigManager.getInstance().getConfig();

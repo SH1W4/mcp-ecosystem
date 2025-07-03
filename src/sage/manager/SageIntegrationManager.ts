@@ -10,7 +10,8 @@ import { Logger } from '../utils/Logger';
 
 export interface SageIntegrationOptions {
   client: WarpRulesClient;
-  ruleEngine: RuleEngine;
+  engine: RuleEngine;
+  config: any;
 }
 
 /**
@@ -24,7 +25,7 @@ export class SageIntegrationManager extends EventEmitter {
   constructor(options: SageIntegrationOptions) {
     super();
     this.client = options.client;
-    this.ruleEngine = options.ruleEngine;
+    this.ruleEngine = options.engine;
     this.logger = new Logger('SageIntegrationManager');
   }
 

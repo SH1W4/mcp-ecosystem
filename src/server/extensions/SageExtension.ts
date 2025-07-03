@@ -2,13 +2,13 @@
 // Extends MCP Server with WARP Rules capabilities
 
 import { MCPServer } from '../MCPServer';
-import { WarpRulesClient } from '../sage/client/WarpRulesClient';
-import { RuleEngine } from '../sage/engine/RuleEngine';
-import { SageIntegrationManager } from '../sage/manager/SageIntegrationManager';
-import { WarpConfig } from '../sage/types/Config';
-import { AgentContext } from '../sage/types/AgentContext';
-import { Rule, RuleApplicationResult } from '../sage/types/Rule';
-import { Logger } from '../sage/utils/Logger';
+import { WarpRulesClient } from '../../sage/client/WarpRulesClient';
+import { RuleEngine } from '../../sage/engine/RuleEngine';
+import { SageIntegrationManager } from '../../sage/manager/SageIntegrationManager';
+import { WarpConfig } from '../../sage/types/Config';
+import { AgentContext } from '../../sage/types/AgentContext';
+import { Rule, RuleApplicationResult } from '../../sage/types/Rule';
+import { Logger } from '../../sage/utils/Logger';
 
 export interface SageExtensionConfig {
   enabled: boolean;
@@ -42,7 +42,8 @@ export class SageExtension {
     this.ruleEngine = new RuleEngine();
     this.integrationManager = new SageIntegrationManager({
       client: this.client,
-      ruleEngine: this.ruleEngine,
+      engine: this.ruleEngine,
+      config: config.warp_config,
     });
 
     // Initialize agent context

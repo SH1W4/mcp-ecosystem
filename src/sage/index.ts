@@ -1,6 +1,13 @@
 // SAGE Integration Module - Main Entry Point
 // Based on WARP_SAGE_INTEGRATION blueprint
 
+import { WarpRulesClient } from './client/WarpRulesClient';
+import { RuleEngine } from './engine/RuleEngine';
+import { SageIntegrationManager } from './manager/SageIntegrationManager';
+import { AgentContext } from './types/AgentContext';
+import { RuleApplicationResult } from './types/Rule';
+import { WarpConfig } from './types/Config';
+
 export { WarpRulesClient } from './client/WarpRulesClient';
 export { RuleEngine } from './engine/RuleEngine';
 export { SageIntegrationManager } from './manager/SageIntegrationManager';
@@ -8,11 +15,10 @@ export { AgentContext } from './types/AgentContext';
 export {
   Rule,
   RuleResult,
-  RuleType,
   RuleApplicationResult,
   RuleEvaluationContext,
 } from './types/Rule';
-export { WarpConfig, ClientCredentials, DEFAULT_WARP_CONFIG } from './types/Config';
+export { WarpConfig } from './types/Config';
 
 // Re-export utilities
 export * from './utils';
@@ -32,7 +38,8 @@ export class SageIntegration {
     this.engine = new RuleEngine();
     this.manager = new SageIntegrationManager({
       client: this.client,
-      ruleEngine: this.engine,
+      engine: this.engine,
+      config: config,
     });
   }
 

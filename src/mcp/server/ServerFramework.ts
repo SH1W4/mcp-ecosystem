@@ -6,8 +6,8 @@
 import { EventEmitter } from 'events';
 import { WebSocket, WebSocketServer } from 'ws';
 import { createServer, Server } from 'http';
-import { logger } from '@/shared/logger';
-import { config } from '@/shared/config';
+import { logger } from '../../shared/logger';
+import { config } from '../../shared/config';
 
 // MCP Protocol Types
 export interface MCPMessage {
@@ -142,7 +142,7 @@ export class MCPServerFramework extends EventEmitter {
           const message: MCPMessage = JSON.parse(data.toString());
           await this.handleMessage(connectionId, message);
         } catch (error) {
-          logger.error('Message parsing error:', error);
+          logger.error('Message parsing error:', error as Error);
           this.sendError(connectionId, 'PARSE_ERROR', 'Invalid JSON message');
         }
       });
@@ -235,7 +235,7 @@ export class MCPServerFramework extends EventEmitter {
         });
       }
     } catch (error) {
-      logger.error(`Error handling message: ${message.method}`, error);
+      logger.error(`Error handling message: ${message.method}`, error as Error);
       this.sendError(
         connectionId,
         'INTERNAL_ERROR',
@@ -358,7 +358,7 @@ export class MCPServerFramework extends EventEmitter {
         },
       };
     } catch (error) {
-      logger.error(`Tool execution error: ${name}`, error);
+      logger.error(`Tool execution error: ${name}`, error as Error);
       throw new Error(`Tool execution failed: ${(error as Error).message}`);
     }
   }
