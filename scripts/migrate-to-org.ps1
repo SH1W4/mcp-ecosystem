@@ -3,6 +3,7 @@ $ErrorActionPreference = 'Stop'
 
 # Configurações
 $ORG_NAME = "mcp-academy"
+$GITHUB_TOKEN = $env:GITHUB_TOKEN # Token deve ter permissão para criar repositórios
 $REPOS = @{
     "mcp-academy" = @{
         description = "Central documentation and resources for MCP Academy"
@@ -27,6 +28,38 @@ function Write-Step {
     Write-Host "`n=== $Message ===" -ForegroundColor Cyan
 }
 
+function Create-GithubRepository {
+    param(
+        [string]$Name,
+        [string]$Description
+    )
+    Write-Step "Creating GitHub repository: $Name"
+
+    $headers = @{
+        'Accept' = 'application/vnd.github.v3+json'
+        'Authorization' = "Bearer $GITHUB_TOKEN"
+    }
+
+    $body = @{
+        name = $Name
+        description = $Description
+        private = $true
+        auto_init = $true
+        gitignore_template = "Node"
+        license_template = "mit"
+    } | ConvertTo-Json
+
+    $url = "https://api.github.com/orgs/$ORG_NAME/repos"
+    
+    try {
+        Invoke-RestMethod -Uri $url -Method Post -Headers $headers -Body $body -ContentType 'application/json'
+        Write-Host "Repository created successfully" -ForegroundColor Green
+    } catch {
+        Write-Host "Error creating repository: $_" -ForegroundColor Red
+        throw
+    }
+}
+
 function Initialize-Repository {
     param(
         [string]$Name,
@@ -34,6 +67,9 @@ function Initialize-Repository {
         [string]$Topics
     )
     Write-Step "Initializing $Name"
+
+    # Criar repositório no GitHub
+    Create-GithubRepository -Name $Name -Description $Description
 
     # Criar diretório se não existir
     if (-not (Test-Path $Name)) {
@@ -48,8 +84,8 @@ function Initialize-Repository {
         git branch -M main
     }
 
-    # Configurar remote
-    $remoteUrl = "https://github.com/$ORG_NAME/$Name.git"
+    # Configurar remote com token
+    $remoteUrl = "https://$GITHUB_TOKEN@github.com/$ORG_NAME/$Name.git"
     git remote remove origin 2>$null
     git remote add origin $remoteUrl
 
