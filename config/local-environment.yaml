@@ -1,0 +1,47 @@
+# Local MCP Environment Configuration
+environment:
+  name: "local-mcp"
+  description: "Local MCP instance for João's machine"
+  type: "development"
+
+server:
+  name: "local-mcp-server"
+  host: "localhost"
+  port: 3000
+
+features:
+  logging: true
+  metrics: true
+  file_access: true
+  system_tools: true
+  
+security:
+  allow_system_commands: true
+  allow_file_operations: true
+  trusted_directories:
+    - "C:\\Users\\João\\Desktop\\PROJETOS"
+    - "C:\\Users\\João\\Documents"
+    
+resources:
+  filesystem:
+    enabled: true
+    root_paths:
+      - "C:\\Users\\João\\Desktop\\PROJETOS"
+  system:
+    enabled: true
+    allowed_commands:
+      - "git"
+      - "node"
+      - "npm"
+      - "python"
+      - "pwsh"
+
+tools:
+  enabled:
+    - name: "system"
+      description: "System command execution"
+    - name: "files"
+      description: "File operations"
+    - name: "git"
+      description: "Git operations"
+
