@@ -1,0 +1,81 @@
+{
+  "name": "aiden-mcp-enhanced",
+  "version": "2.0.0",
+  "description": "Enhanced AIDEN with full MCP capabilities",
+  "server": {
+    "command": "python",
+    "args": [
+      "-m",
+      "aiden.mcp.server"
+    ],
+    "env": {
+      "AIDEN_HOME": "C:\\Users\\Jo\u00e3o\\Desktop\\PROJETOS\\MCP_ECOSYSTEM\\AIDEN_MCP",
+      "PYTHONPATH": "C:\\Users\\Jo\u00e3o\\Desktop\\PROJETOS\\MCP_ECOSYSTEM\\AIDEN_MCP"
+    }
+  },
+  "tools": [
+    {
+      "name": "analyze_code",
+      "description": "Analyze code and suggest improvements",
+      "parameters": {
+        "code": {
+          "type": "string",
+          "required": true
+        },
+        "language": {
+          "type": "string",
+          "default": "python"
+        }
+      }
+    },
+    {
+      "name": "generate_code",
+      "description": "Generate code based on specifications",
+      "parameters": {
+        "prompt": {
+          "type": "string",
+          "required": true
+        },
+        "language": {
+          "type": "string",
+          "default": "python"
+        },
+        "context": {
+          "type": "object"
+        }
+      }
+    },
+    {
+      "name": "optimize_performance",
+      "description": "Optimize code performance",
+      "parameters": {
+        "code": {
+          "type": "string",
+          "required": true
+        }
+      }
+    },
+    {
+      "name": "manage_repository",
+      "description": "Manage GitHub repository tasks",
+      "parameters": {
+        "action": {
+          "type": "string",
+          "enum": [
+            "create_issue",
+            "create_pr",
+            "analyze_repo"
+          ]
+        },
+        "data": {
+          "type": "object"
+        }
+      }
+    }
+  ],
+  "resources": {
+    "memory": "2GB",
+    "timeout": 300,
+    "max_tokens": 100000
+  }
+}
