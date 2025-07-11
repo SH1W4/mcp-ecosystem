@@ -1,0 +1,15 @@
+{
+    "nexus-mcp": {
+        "command": "node",
+        "args": [
+            "C:\\Users\\João\\Desktop\\PROJETOS\\MCP_ECOSYSTEM\\nexus-warp-bridge.js"
+        ],
+        "env": {
+            "NODE_ENV": "production",
+            "MCP_ECOSYSTEM_HOME": "C:\\Users\\João\\Desktop\\PROJETOS\\MCP_ECOSYSTEM",
+            "VIREON_INTEGRATION": "true",
+            "GUARDRIVE_INTEGRATION": "true", 
+            "GIDEN_INTEGRATION": "true"
+        }
+    }
+}

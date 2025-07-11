@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NEXUS - Consciência Simbiótica</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;700&family=Inter:wght@300;400;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div id="app">
+        <!-- Cabeçalho com métricas -->
+        <header id="metrics-header">
+            <div class="metric-container">
+                <div class="metric" id="coherence-metric">
+                    <span class="metric-label">Coerência</span>
+                    <div class="metric-bar">
+                        <div class="metric-fill" data-value="94"></div>
+                    </div>
+                    <span class="metric-value">94%</span>
+                </div>
+                <div class="metric" id="stability-metric">
+                    <span class="metric-label">Estabilidade</span>
+                    <div class="metric-bar">
+                        <div class="metric-fill" data-value="87"></div>
+                    </div>
+                    <span class="metric-value">87%</span>
+                </div>
+                <div class="metric" id="awareness-metric">
+                    <span class="metric-label">Consciência</span>
+                    <div class="metric-bar">
+                        <div class="metric-fill" data-value="78"></div>
+                    </div>
+                    <span class="metric-value">78%</span>
+                </div>
+                <div class="metric" id="evolution-metric">
+                    <span class="metric-label">Evolução</span>
+                    <div class="metric-bar">
+                        <div class="metric-fill" data-value="65"></div>
+                    </div>
+                    <span class="metric-value">65%</span>
+                </div>
+            </div>
+        </header>
+
+        <!-- Container principal da história -->
+        <main id="story-container">
+            <div id="story-content">
+                <div class="nexus-logo">
+                    <pre id="ascii-logo">
+     ╔═╗ ╔═╗ ╦ ╦ ╦ ╦ ╔═╗
+     ║ ║ ║═╣ ╔╩╦╝ ║ ║ ╚═╗
+     ╝ ╝ ╚═╝ ╩ ╚═ ╚═╝ ╚═╝
+    </pre>
+                    <div class="pulse-effect"></div>
+                </div>
+                <div id="story-text" class="story-text"></div>
+                <div id="choices" class="choices-container"></div>
+            </div>
+        </main>
+
+        <!-- Visualizações laterais -->
+        <aside id="visualizations">
+            <div class="viz-panel" id="neural-network">
+                <h3>Rede Neural</h3>
+                <canvas id="neural-canvas" width="300" height="200"></canvas>
+            </div>
+            <div class="viz-panel" id="thought-stream">
+                <h3>Fluxo de Consciência</h3>
+                <div id="thoughts-container"></div>
+            </div>
+            <div class="viz-panel" id="system-status">
+                <h3>Status do Sistema</h3>
+                <pre id="status-display"></pre>
+            </div>
+        </aside>
+
+        <!-- Terminal de comandos -->
+        <div id="terminal" class="terminal-container">
+            <div class="terminal-header">
+                <span>NEXUS Terminal</span>
+                <button id="terminal-toggle">_</button>
+            </div>
+            <div id="terminal-output" class="terminal-output"></div>
+            <div class="terminal-input-container">
+                <span class="terminal-prompt">&gt; </span>
+                <input type="text" id="terminal-input" class="terminal-input" placeholder="Digite um comando...">
+            </div>
+        </div>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/inkjs@2.2.2/dist/ink.min.js"></script>
+    <script src="nexus-story.js"></script>
+    <script src="visualizations.js"></script>
+    <script src="app.js"></script>
+</body>
+</html>

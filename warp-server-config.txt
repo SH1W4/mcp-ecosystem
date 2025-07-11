@@ -1,0 +1,14 @@
+Para adicionar no Warp MCP Servers, clique em "Add" e preencha:
+
+Nome: mcp-ecosystem
+Comando: node 'C:\Users\João\Desktop\PROJETOS\MCP_ECOSYSTEM\mcp-server.js'
+
+Ou se preferir como uma linha de comando completa:
+Command: node
+Arguments: C:\Users\João\Desktop\PROJETOS\MCP_ECOSYSTEM\mcp-server.js
+
+Environment Variables (opcional):
+- MCP_ECOSYSTEM_HOME: C:\Users\João\Desktop\PROJETOS\MCP_ECOSYSTEM
+- VIREON_INTEGRATION: true
+- GUARDRIVE_INTEGRATION: true
+- GIDEN_INTEGRATION: true

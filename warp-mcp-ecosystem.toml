@@ -1,0 +1,12 @@
+# Adicione esta configuração ao seu arquivo warp-server.toml
+
+name="mcp-ecosystem"
+address="node 'C:\\Users\\João\\Desktop\\PROJETOS\\MCP_ECOSYSTEM\\mcp-server.js'"
+persist=true
+
+# Se o Warp permitir variáveis de ambiente, adicione:
+# [environment]
+# MCP_ECOSYSTEM_HOME="C:\\Users\\João\\Desktop\\PROJETOS\\MCP_ECOSYSTEM"
+# VIREON_INTEGRATION="true"
+# GUARDRIVE_INTEGRATION="true"
+# GIDEN_INTEGRATION="true"
