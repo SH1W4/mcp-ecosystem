@@ -1,0 +1,20 @@
+{
+  "project_type": "mcp_consolidation",
+  "mode": "full",
+  "capabilities": {
+    "task_management": true,
+    "document_sync": true,
+    "monitoring": true,
+    "metrics": true
+  },
+  "integrations": {
+    "arquimax": {
+      "enabled": true,
+      "adaptation_level": 0.85
+    },
+    "nexus": {
+      "enabled": true,
+      "sync_mode": "realtime"
+    }
+  }
+}

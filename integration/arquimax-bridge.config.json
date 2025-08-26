@@ -1,0 +1,22 @@
+{
+  "name": "arquimax_bridge",
+  "enabled": true,
+  "adaptation_level": 0.85,
+  "capabilities": {
+    "task_management": true,
+    "monitoring": true,
+    "metrics": true
+  },
+  "triggers": {
+    "on_startup": true,
+    "on_demand": true
+  },
+  "dependencies": [
+    "symbiotic_init"
+  ],
+  "params": {
+    "deepAnalysis": true,
+    "useNeuralModel": true,
+    "confidenceThreshold": 0.85
+  }
+}

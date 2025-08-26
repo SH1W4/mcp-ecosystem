@@ -1,0 +1,19 @@
+{
+  "name": "nexus_bridge",
+  "enabled": true,
+  "sync_mode": "realtime",
+  "capabilities": {
+    "document_sync": true,
+    "connectors": true,
+    "adaptive_execution": true
+  },
+  "triggers": {
+    "post_analysis": true,
+    "on_change": true
+  },
+  "params": {
+    "sync_interval": "realtime",
+    "sync_strategy": "incremental",
+    "conflict_resolution": "automatic"
+  }
+}
