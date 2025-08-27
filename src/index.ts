@@ -21,6 +21,10 @@ export * from './modules/sync/types';
 import * as modules from './modules';
 export { modules };
 
+// Symbiotic module exports
+export { SymbioticModule } from './modules/symbiotic';
+export * from './modules/symbiotic/types';
+
 // Version
 export const VERSION = '1.0.0';
 

@@ -1,0 +1,123 @@
+name: Bug Report
+description: Reporte um problema no MCP Ecosystem
+title: "[Bug]: "
+labels: ["bug", "triage"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por nos ajudar a melhorar o MCP Ecosystem reportando um bug!
+        
+        Por favor, preencha este formulário com o máximo de detalhes possível.
+        
+  - type: textarea
+    id: description
+    attributes:
+      label: Descrição do Bug
+      description: Uma descrição clara e concisa do bug.
+      placeholder: Ao tentar [ação], aconteceu [problema] em vez de [comportamento esperado]...
+    validations:
+      required: true
+      
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Passos para Reproduzir
+      description: Passos detalhados para reproduzir o comportamento.
+      placeholder: |
+        1. Vá para '...'
+        2. Clique em '....'
+        3. Execute '....'
+        4. Veja o erro
+    validations:
+      required: true
+      
+  - type: textarea
+    id: expected
+    attributes:
+      label: Comportamento Esperado
+      description: O que deveria acontecer?
+      placeholder: O sistema deveria...
+    validations:
+      required: true
+      
+  - type: textarea
+    id: actual
+    attributes:
+      label: Comportamento Atual
+      description: O que está acontecendo no momento?
+      placeholder: Em vez disso, o sistema está...
+    validations:
+      required: true
+      
+  - type: dropdown
+    id: environment
+    attributes:
+      label: Ambiente
+      description: Onde o bug ocorre?
+      multiple: true
+      options:
+        - Desenvolvimento
+        - Staging
+        - Produção
+    validations:
+      required: true
+      
+  - type: input
+    id: version
+    attributes:
+      label: Versão
+      description: Qual versão do MCP Ecosystem você está usando?
+      placeholder: ex. v1.0.0
+    validations:
+      required: true
+      
+  - type: textarea
+    id: system
+    attributes:
+      label: Informações do Sistema
+      description: |
+        Informe os detalhes do seu ambiente.
+        - SO: [ex. Windows 10]
+        - Node: [ex. 14.17.0]
+        - NPM: [ex. 6.14.13]
+      value: |
+        - SO:
+        - Node:
+        - NPM:
+    validations:
+      required: true
+      
+  - type: textarea
+    id: logs
+    attributes:
+      label: Logs Relevantes
+      description: Copie e cole quaisquer logs relevantes
+      render: shell
+      
+  - type: textarea
+    id: metrics
+    attributes:
+      label: Métricas do Sistema
+      description: Se aplicável, forneça as métricas do sistema no momento do erro
+      placeholder: |
+        - Score Operacional: 87.675%
+        - Estabilidade VIREON: 92.3%
+        - Fidelidade SAGE: 94.1%
+        - Coerência do Sistema: 87.5%
+      
+  - type: textarea
+    id: additional
+    attributes:
+      label: Informações Adicionais
+      description: Qualquer outra informação que você considere relevante
+      placeholder: Contexto adicional, screenshots, etc.
+      
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Código de Conduta
+      description: Ao submeter este bug report, você concorda em seguir nosso [Código de Conduta](../CODE_OF_CONDUCT.md)
+      options:
+        - label: Concordo em seguir o Código de Conduta deste projeto
+          required: true

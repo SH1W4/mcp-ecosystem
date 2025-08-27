@@ -1,0 +1,106 @@
+name: Feature Request
+description: Sugira uma ideia para o MCP Ecosystem
+title: "[Feature]: "
+labels: ["enhancement"]
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Obrigado por dedicar seu tempo para sugerir uma melhoria ao MCP Ecosystem!
+        
+        Por favor, preencha este formulário para nos ajudar a entender sua sugestão.
+        
+  - type: textarea
+    id: problem
+    attributes:
+      label: Problema Relacionado
+      description: Sua sugestão está relacionada a algum problema? Por favor, descreva.
+      placeholder: Fico frustrado quando [...]
+    validations:
+      required: true
+      
+  - type: textarea
+    id: solution
+    attributes:
+      label: Solução Desejada
+      description: Descreva a solução que você gostaria
+      placeholder: Gostaria que o sistema pudesse [...]
+    validations:
+      required: true
+      
+  - type: textarea
+    id: alternatives
+    attributes:
+      label: Alternativas Consideradas
+      description: Descreva alternativas que você considerou
+      placeholder: Pensei também em [...]
+      
+  - type: dropdown
+    id: impact
+    attributes:
+      label: Impacto na Simbiose
+      description: Como esta feature afetaria o nível simbiótico do sistema?
+      options:
+        - Alto impacto positivo
+        - Médio impacto positivo
+        - Baixo impacto positivo
+        - Neutro
+        - Impacto desconhecido
+    validations:
+      required: true
+      
+  - type: dropdown
+    id: scope
+    attributes:
+      label: Escopo da Feature
+      description: Qual componente do sistema seria afetado?
+      multiple: true
+      options:
+        - Core System
+        - ARQUIMAX Integration
+        - NEXUS Integration
+        - VIREON Integration
+        - Monitoring System
+        - Evolution System
+        - Documentation
+    validations:
+      required: true
+      
+  - type: textarea
+    id: metrics
+    attributes:
+      label: Impacto nas Métricas
+      description: Como essa feature afetaria as métricas do sistema?
+      placeholder: |
+        - Score Operacional: Aumento esperado de X%
+        - Estabilidade: Impacto neutro
+        - Fidelidade: Melhoria de Y%
+        - Coerência: Aumento esperado de Z%
+        
+  - type: textarea
+    id: implementation
+    attributes:
+      label: Sugestões de Implementação
+      description: Se você tem ideias sobre como implementar esta feature, compartilhe aqui
+      placeholder: Poderíamos usar [tecnologia/abordagem] para implementar isso...
+      
+  - type: textarea
+    id: context
+    attributes:
+      label: Contexto Adicional
+      description: Qualquer outro contexto ou screenshots sobre a feature request
+      
+  - type: checkboxes
+    id: terms
+    attributes:
+      label: Código de Conduta
+      description: Ao submeter este feature request, você concorda em seguir nosso [Código de Conduta](../CODE_OF_CONDUCT.md)
+      options:
+        - label: Concordo em seguir o Código de Conduta deste projeto
+          required: true
+          
+  - type: markdown
+    attributes:
+      value: |
+        **Nota**: O sistema está atualmente em fase de evolução simbiótica (62% -> 75%).
+        Features que contribuam para este objetivo terão prioridade.
