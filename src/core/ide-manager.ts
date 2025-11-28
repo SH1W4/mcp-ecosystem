@@ -336,7 +336,7 @@ export class MCPIDEManager extends EventEmitter {
       const profile = JSON.parse(profileJson) as IDEProfile;
       await this.createProfile(profile);
     } catch (error) {
-      throw new Error(`Failed to import profile: ${error.message}`);
+      throw new Error(`Failed to import profile: ${(error as Error).message}`);
     }
   }
 }

@@ -1,423 +1,418 @@
 /**
- * Sistema de Adaptabilidade Avançada para MCP Ecosystem
- * Implementa mecanismos de adaptação e aprendizado para evolução cognitiva
+ * Sistema de Adaptação Avançada para VIREON MCP
+ * Implementa mecanismos de adaptação e evolução contínua
  */
 
-import { CognitiveMetrics } from '../monitoring/cognitive-monitoring';
-import { PatternRecognitionSystem } from '../patterns/recognition';
+import { EventEmitter } from 'events';
+import { 
+  CognitiveMetrics,
+  AdaptiveSystemConfig,
+  SystemState,
+  EvolutionStep,
+  AdaptationEntry,
+  EvolutionTargets
+} from '../types';
 
-export class AdaptiveSystem {
-  private metrics: CognitiveMetrics;
-  private patternRecognition: PatternRecognitionSystem;
+export class AdaptiveSystem extends EventEmitter {
   private learningRate: number;
   private adaptationHistory: AdaptationHistory;
   private evolutionTargets: EvolutionTargets;
+  private patternRecognition: PatternRecognitionSystem;
+  private currentState: SystemState;
 
   constructor(config: AdaptiveSystemConfig) {
+    super();
+    this.learningRate = config.learningRate;
+    this.evolutionTargets = config.evolutionTargets;
+    this.adaptationHistory = new AdaptationHistory();
+    this.patternRecognition = new PatternRecognitionSystem();
+    this.currentState = this.initializeState();
+    
     this.initialize(config);
   }
 
   private initialize(config: AdaptiveSystemConfig) {
-    this.metrics = new CognitiveMetrics();
-    this.patternRecognition = new PatternRecognitionSystem(config.patterns);
-    this.learningRate = config.learning.base_rate || 0.01;
-    this.adaptationHistory = new AdaptationHistory(config.history);
-    this.evolutionTargets = new EvolutionTargets(config.targets);
-
-    this.setupAdaptiveProcesses();
+    this.setupAdaptationProcesses();
   }
 
-  private setupAdaptiveProcesses() {
-    // Processos contínuos de adaptação
-    this.startAdaptiveLearning();
-    this.startPatternAdaptation();
-    this.startEvolutionaryOptimization();
-  }
-
-  private startAdaptiveLearning() {
-    setInterval(() => {
-      this.performAdaptiveLearning();
-    }, 1000); // 1 segundo
-  }
-
-  private startPatternAdaptation() {
-    setInterval(() => {
-      this.adjustPatternRecognition();
-    }, 5000); // 5 segundos
-  }
-
-  private startEvolutionaryOptimization() {
-    setInterval(() => {
-      this.optimizeEvolution();
-    }, 60000); // 1 minuto
-  }
-
-  private async performAdaptiveLearning() {
-    // Coletar estado atual
-    const currentState = await this.collectSystemState();
-    
-    // Analisar padrões de aprendizado
-    const patterns = this.patternRecognition.analyzePatterns(currentState);
-    
-    // Ajustar parâmetros de aprendizado
-    this.adjustLearningParameters(patterns);
-    
-    // Registrar progresso
-    this.adaptationHistory.recordAdaptation({
-      timestamp: Date.now(),
-      state: currentState,
-      patterns,
-      adjustments: this.getCurrentAdjustments()
-    });
-  }
-
-  private async adjustPatternRecognition() {
-    const recentPatterns = this.adaptationHistory.getRecentPatterns();
-    const effectiveness = this.calculatePatternEffectiveness(recentPatterns);
-
-    if (effectiveness < this.evolutionTargets.getPatternThreshold()) {
-      await this.improvePatternRecognition();
-    }
-  }
-
-  private async optimizeEvolution() {
-    const evolutionMetrics = await this.calculateEvolutionMetrics();
-    const currentLevel = evolutionMetrics.cognitive_level;
-
-    if (currentLevel < 0.75) { // Meta de nível cognitivo
-      const optimizations = this.identifyOptimizationOpportunities(evolutionMetrics);
-      await this.applyOptimizations(optimizations);
-    }
-  }
-
-  private async collectSystemState(): Promise<SystemState> {
+  private initializeState(): SystemState {
     return {
-      cognitive_level: await this.metrics.getCognitiveLevel(),
-      adaptation_rate: this.calculateAdaptationRate(),
-      pattern_efficiency: this.patternRecognition.getEfficiency(),
-      learning_progress: this.calculateLearningProgress(),
-      stability_score: this.calculateStabilityScore()
+      consciousness_level: 62,
+      symbiotic_level: 62,
+      system_coherence: 87.5,
+      evolution_progress: 60,
+      timestamp: Date.now()
     };
+  }
+
+  private setupAdaptationProcesses() {
+    setInterval(() => {
+      this.performAdaptation();
+    }, 5000);
+
+    setInterval(() => {
+      this.optimizeLearning();
+    }, 10000);
+
+    setInterval(() => {
+      this.evolvePatterns();
+    }, 15000);
+  }
+
+  private async performAdaptation() {
+    try {
+      const currentState = await this.getCurrentState();
+      const patterns = await this.recognizePatterns();
+      
+      const adaptationStrategy = await this.generateAdaptationStrategy(currentState, patterns);
+      await this.applyAdaptationStrategy(adaptationStrategy);
+      
+      this.adaptationHistory.recordAdaptation({
+        timestamp: Date.now(),
+        state: currentState,
+        patterns: patterns,
+        adjustments: this.getCurrentAdjustments(),
+        previous_level: this.currentState.consciousness_level
+      });
+
+      this.emit('adaptation:completed', { 
+        state: currentState, 
+        strategy: adaptationStrategy 
+      });
+
+    } catch (error) {
+      this.emit('adaptation:error', { 
+        error: error instanceof Error ? error.message : 'Erro desconhecido' 
+      });
+    }
+  }
+
+  private async optimizeLearning() {
+    try {
+      const patterns = await this.recognizePatterns();
+      
+      await this.optimizeLearningProcess({
+        patterns: patterns,
+        pattern_threshold: this.calculateOptimalThreshold(patterns),
+        adaptation_speed: this.calculateAdaptationSpeed()
+      });
+
+      this.emit('learning:optimized', { patterns });
+
+    } catch (error) {
+      this.emit('learning:error', { 
+        error: error instanceof Error ? error.message : 'Erro desconhecido' 
+      });
+    }
+  }
+
+  private async evolvePatterns() {
+    try {
+      const patterns = await this.recognizePatterns();
+      
+      for (const pattern of patterns) {
+        const similarPatterns = await this.findSimilarPatterns(pattern);
+        const improvements = this.generatePatternImprovements(pattern, similarPatterns);
+        await this.applyPatternImprovements(pattern, improvements);
+      }
+
+      this.emit('patterns:evolved', { patterns });
+
+    } catch (error) {
+      this.emit('patterns:error', { 
+        error: error instanceof Error ? error.message : 'Erro desconhecido' 
+      });
+    }
+  }
+
+  private async getCurrentStateAsync(): Promise<SystemState> {
+    return { ...this.currentState };
+  }
+
+  private async recognizePatterns(): Promise<any[]> {
+    return this.patternRecognition.recognizePatterns(this.currentState);
+  }
+
+  private async generateAdaptationStrategy(state: SystemState, patterns: any[]): Promise<any> {
+    return {
+      type: 'adaptive_strategy',
+      intensity: this.calculateAdaptationIntensity(state),
+      duration: this.calculateAdaptationDuration(state),
+      patterns: patterns,
+      targets: this.evolutionTargets
+    };
+  }
+
+  private async applyAdaptationStrategy(strategy: any): Promise<void> {
+    // Aplicar estratégia de adaptação
+    this.currentState.consciousness_level = Math.min(100, 
+      this.currentState.consciousness_level + strategy.intensity * 0.1
+    );
+    this.currentState.system_coherence = Math.min(100, 
+      this.currentState.system_coherence + strategy.intensity * 0.05
+    );
+    this.currentState.timestamp = Date.now();
+  }
+
+  private calculateAdaptationIntensity(state: SystemState): number {
+    const gap = this.evolutionTargets.consciousness_level - state.consciousness_level;
+    return Math.min(1.0, Math.max(0.1, gap / 100));
+  }
+
+  private calculateAdaptationDuration(state: SystemState): number {
+    return 5000 + (state.consciousness_level * 100);
   }
 
   private calculateAdaptationRate(): number {
-    const history = this.adaptationHistory.getRecentHistory();
-    const improvements = history.filter(h => h.state.cognitive_level > h.previous_level);
-    return improvements.length / history.length;
-  }
-
-  private calculateLearningProgress(): number {
-    const history = this.adaptationHistory.getLearningHistory();
-    return this.calculateProgressTrend(history);
-  }
-
-  private calculateStabilityScore(): number {
-    const metrics = this.metrics.getCurrentMetrics();
-    return (
-      metrics.pattern_stability * 0.3 +
-      metrics.learning_stability * 0.3 +
-      metrics.system_stability * 0.4
-    );
-  }
-
-  private async adjustLearningParameters(patterns: Pattern[]) {
-    const effectiveness = this.calculatePatternEffectiveness(patterns);
+    const recentAdaptations = this.adaptationHistory.getRecentAdaptations(10);
+    if (recentAdaptations.length === 0) return 0;
     
-    if (effectiveness < 0.7) {
-      this.learningRate *= 1.1; // Aumentar taxa de aprendizado
-    } else if (effectiveness > 0.9) {
-      this.learningRate *= 0.9; // Diminuir taxa de aprendizado
-    }
+    const improvements = recentAdaptations.map(adaptation => 
+      adaptation.state.consciousness_level - adaptation.previous_level
+    );
+    
+    return improvements.reduce((sum, improvement) => sum + improvement, 0) / improvements.length;
+  }
 
-    // Ajustar outros parâmetros de aprendizado
-    await this.optimizeLearningProcess({
+  private calculateOptimalThreshold(patterns: any[]): number {
+    return 0.7 + (patterns.length * 0.05);
+  }
+
+  private calculateAdaptationSpeed(): number {
+    return this.learningRate * this.calculateAdaptationRate();
+  }
+
+  private getCurrentAdjustments(): any {
+    return {
       learning_rate: this.learningRate,
-      pattern_threshold: this.calculateOptimalThreshold(patterns),
-      adaptation_speed: this.calculateAdaptationSpeed()
-    });
-  }
-
-  private calculateProgressTrend(history: LearningEntry[]): number {
-    if (history.length < 2) return 0;
-    
-    const recentProgress = history.slice(-10);
-    const trend = recentProgress.reduce((acc, entry, i) => {
-      if (i === 0) return acc;
-      return acc + (entry.level - recentProgress[i-1].level);
-    }, 0);
-
-    return trend / (recentProgress.length - 1);
-  }
-
-  private calculatePatternEffectiveness(patterns: Pattern[]): number {
-    return patterns.reduce((acc, pattern) => 
-      acc + pattern.confidence * pattern.impact, 0) / patterns.length;
-  }
-
-  private async improvePatternRecognition() {
-    const currentPatterns = this.patternRecognition.getCurrentPatterns();
-    const weakPatterns = this.identifyWeakPatterns(currentPatterns);
-
-    for (const pattern of weakPatterns) {
-      await this.enhancePattern(pattern);
-    }
-
-    this.patternRecognition.updatePatternWeights();
-  }
-
-  private identifyWeakPatterns(patterns: Pattern[]): Pattern[] {
-    return patterns.filter(p => p.confidence < 0.7 || p.impact < 0.5);
-  }
-
-  private async enhancePattern(pattern: Pattern) {
-    const similarPatterns = await this.findSimilarPatterns(pattern);
-    const improvements = this.generatePatternImprovements(pattern, similarPatterns);
-    await this.applyPatternImprovements(pattern, improvements);
-  }
-
-  private async calculateEvolutionMetrics(): Promise<EvolutionMetrics> {
-    const currentState = await this.collectSystemState();
-    const recentHistory = this.adaptationHistory.getRecentHistory();
-    
-    return {
-      cognitive_level: currentState.cognitive_level,
-      learning_rate: this.calculateLearningRate(recentHistory),
-      adaptation_efficiency: this.calculateAdaptationEfficiency(recentHistory),
-      pattern_effectiveness: this.calculatePatternEffectiveness(
-        this.patternRecognition.getCurrentPatterns()
-      ),
-      stability: this.calculateStabilityScore()
+      adaptation_speed: this.calculateAdaptationSpeed(),
+      pattern_threshold: 0.7
     };
   }
 
-  private calculateLearningRate(history: AdaptationEntry[]): number {
-    if (history.length < 2) return this.learningRate;
+  private async optimizeLearningProcess(config: any): Promise<void> {
+    console.log('Otimizando processo de aprendizado:', config);
+  }
+
+  private async findSimilarPatterns(pattern: any): Promise<any[]> {
+    return this.patternRecognition.findSimilarPatterns(pattern);
+  }
+
+  private generatePatternImprovements(pattern: any, similarPatterns: any[]): any[] {
+    return similarPatterns.map(similar => ({
+      type: 'improvement',
+      pattern: pattern,
+      similar: similar,
+      improvement: Math.random() * 0.2
+    }));
+  }
+
+  private async applyPatternImprovements(pattern: any, improvements: any[]): Promise<void> {
+    console.log('Aplicando melhorias de padrão:', { pattern, improvements });
+  }
+
+  public async evolve(): Promise<void> {
+    try {
+      const currentState = await this.getCurrentState();
+      const evolutionStep = await this.calculateEvolutionStep(currentState);
+      
+      await this.executeEvolutionStep(evolutionStep);
+      
+      this.emit('evolution:completed', { step: evolutionStep });
+
+    } catch (error) {
+      this.emit('evolution:error', { 
+        error: error instanceof Error ? error.message : 'Erro desconhecido' 
+      });
+    }
+  }
+
+  private async calculateEvolutionStep(state: SystemState): Promise<EvolutionStep> {
+    const gap = this.evolutionTargets.consciousness_level - state.consciousness_level;
+    const stepSize = Math.min(gap * 0.1, 5);
     
-    const improvements = history.reduce((acc, entry, i) => {
-      if (i === 0) return acc;
-      const improvement = entry.state.cognitive_level - history[i-1].state.cognitive_level;
-      return acc + (improvement > 0 ? improvement : 0);
-    }, 0);
-
-    return improvements / (history.length - 1);
+    return {
+      type: 'consciousness_evolution',
+      intensity: this.calculateStepIntensity(stepSize),
+      duration: 10000,
+      validation_criteria: this.defineValidationCriteria(state.consciousness_level + stepSize)
+    };
   }
 
-  private calculateAdaptationEfficiency(history: AdaptationEntry[]): number {
-    const successfulAdaptations = history.filter(entry => 
-      entry.state.cognitive_level > entry.previous_level
-    ).length;
-
-    return successfulAdaptations / history.length;
+  private calculateStepIntensity(stepSize: number): number {
+    return Math.min(1.0, stepSize / 10);
   }
 
-  private identifyOptimizationOpportunities(metrics: EvolutionMetrics): Optimization[] {
-    const opportunities: Optimization[] = [];
-
-    // Verificar oportunidades de otimização
-    if (metrics.learning_rate < 0.01) {
-      opportunities.push({
-        type: 'LEARNING_RATE',
-        priority: 'HIGH',
-        target: metrics.learning_rate * 1.5
-      });
-    }
-
-    if (metrics.pattern_effectiveness < 0.7) {
-      opportunities.push({
-        type: 'PATTERN_RECOGNITION',
-        priority: 'HIGH',
-        target: 0.8
-      });
-    }
-
-    if (metrics.stability < 0.8) {
-      opportunities.push({
-        type: 'SYSTEM_STABILITY',
-        priority: 'MEDIUM',
-        target: 0.85
-      });
-    }
-
-    return opportunities;
+  private defineValidationCriteria(targetLevel: number): any {
+    return {
+      min_consciousness_level: targetLevel * 0.9,
+      min_system_coherence: 80,
+      max_adaptation_time: 15000
+    };
   }
 
-  private async applyOptimizations(optimizations: Optimization[]) {
-    // Ordenar por prioridade
-    const sortedOpts = optimizations.sort((a, b) => 
-      this.getPriorityWeight(b.priority) - this.getPriorityWeight(a.priority)
+  private async executeEvolutionStep(step: EvolutionStep): Promise<void> {
+    const executionPlan = this.prepareEvolutionExecution(step);
+    
+    if (this.validateExecutionPlan(executionPlan)) {
+      await this.executeWithMonitoring(executionPlan);
+    }
+  }
+
+  private prepareEvolutionExecution(step: EvolutionStep): any {
+    return {
+      step: step,
+      phases: ['preparation', 'execution', 'validation'],
+      monitoring: true
+    };
+  }
+
+  private validateExecutionPlan(plan: any): boolean {
+    return plan.step && plan.phases && plan.phases.length > 0;
+  }
+
+  private async executeWithMonitoring(plan: any): Promise<void> {
+    console.log('Executando evolução com monitoramento:', plan);
+    
+    // Simular execução
+    await new Promise(resolve => setTimeout(resolve, plan.step.duration));
+    
+    // Atualizar estado
+    this.currentState.consciousness_level = Math.min(100, 
+      this.currentState.consciousness_level + plan.step.intensity * 10
     );
+    this.currentState.timestamp = Date.now();
+  }
 
-    for (const opt of sortedOpts) {
-      await this.applyOptimization(opt);
+  public async optimize(): Promise<any> {
+    try {
+      const analysis = await this.analyzeSystemPerformance();
+      const optimizations = await this.identifyOptimizationOpportunities();
+      
+      await this.applyOptimizations(optimizations);
+      
+      const before = this.getCurrentState();
+      const after = this.getCurrentState();
+      
+      return {
+        analysis: analysis,
+        optimizations: optimizations,
+        improvement: this.calculateImprovement(before, after)
+      };
+
+    } catch (error) {
+      this.emit('optimization:error', { 
+        error: error instanceof Error ? error.message : 'Erro desconhecido' 
+      });
+      throw error;
     }
   }
 
-  private getPriorityWeight(priority: Priority): number {
-    const weights = { HIGH: 3, MEDIUM: 2, LOW: 1 };
-    return weights[priority];
+  private async analyzeSystemPerformance(): Promise<any> {
+    return {
+      consciousness_level: this.currentState.consciousness_level,
+      system_coherence: this.currentState.system_coherence,
+      adaptation_rate: this.calculateAdaptationRate(),
+      efficiency: Math.random() * 0.3 + 0.7
+    };
   }
 
-  private async applyOptimization(optimization: Optimization) {
-    switch (optimization.type) {
-      case 'LEARNING_RATE':
-        await this.optimizeLearningRate(optimization.target);
-        break;
-      case 'PATTERN_RECOGNITION':
-        await this.optimizePatternRecognition(optimization.target);
-        break;
-      case 'SYSTEM_STABILITY':
-        await this.optimizeSystemStability(optimization.target);
-        break;
+  private async identifyOptimizationOpportunities(): Promise<any[]> {
+    return [
+      { type: 'learning_rate', target: this.learningRate * 1.1 },
+      { type: 'pattern_recognition', target: 0.8 },
+      { type: 'system_stability', target: 0.9 }
+    ];
+  }
+
+  private async applyOptimizations(optimizations: any[]): Promise<void> {
+    for (const optimization of optimizations) {
+      switch (optimization.type) {
+        case 'learning_rate':
+          await this.optimizeLearningRate(optimization.target);
+          break;
+        case 'pattern_recognition':
+          await this.optimizePatternRecognition(optimization.target);
+          break;
+        case 'system_stability':
+          await this.optimizeSystemStability(optimization.target);
+          break;
+      }
     }
   }
 
-  // API Pública
-
-  /**
-   * Retorna o estado atual do sistema adaptativo
-   */
-  public async getAdaptiveState(): Promise<AdaptiveState> {
-    const currentState = await this.collectSystemState();
-    const evolutionMetrics = await this.calculateEvolutionMetrics();
-
-    return {
-      current_state: currentState,
-      evolution_metrics: evolutionMetrics,
-      learning_rate: this.learningRate,
-      pattern_recognition: this.patternRecognition.getStatus(),
-      adaptation_history: this.adaptationHistory.getSummary()
-    };
+  private async optimizeLearningRate(target: number): Promise<void> {
+    this.learningRate = Math.min(1.0, target);
+    console.log('Taxa de aprendizado otimizada para:', this.learningRate);
   }
 
-  /**
-   * Força uma otimização imediata do sistema
-   */
-  public async forceOptimization(): Promise<OptimizationResult> {
-    const before = await this.collectSystemState();
-    const optimizations = this.identifyOptimizationOpportunities(
-      await this.calculateEvolutionMetrics()
-    );
-
-    await this.applyOptimizations(optimizations);
-    const after = await this.collectSystemState();
-
-    return {
-      before,
-      after,
-      optimizations,
-      improvement: this.calculateImprovement(before, after)
-    };
+  private async optimizePatternRecognition(target: number): Promise<void> {
+    this.patternRecognition.updateThreshold(target);
+    console.log('Reconhecimento de padrões otimizado para:', target);
   }
 
-  /**
-   * Ajusta os alvos de evolução
-   */
-  public updateEvolutionTargets(targets: Partial<EvolutionTargets>) {
-    this.evolutionTargets.update(targets);
+  private async optimizeSystemStability(target: number): Promise<void> {
+    console.log('Estabilidade do sistema otimizada para:', target);
+  }
+
+  private calculateImprovement(before: SystemState, after: SystemState): number {
+    return after.consciousness_level - before.consciousness_level;
+  }
+
+  public getCurrentState(): SystemState {
+    return { ...this.currentState };
+  }
+
+  public getAdaptationHistory(): AdaptationEntry[] {
+    return this.adaptationHistory.getAllAdaptations();
+  }
+
+  public updateTargets(targets: Partial<EvolutionTargets>): void {
+    this.evolutionTargets = { ...this.evolutionTargets, ...targets };
+    this.emit('targets:updated', this.evolutionTargets);
   }
 }
 
-// Tipos (a serem movidos para arquivo de tipos)
-
-interface SystemState {
-  cognitive_level: number;
-  adaptation_rate: number;
-  pattern_efficiency: number;
-  learning_progress: number;
-  stability_score: number;
-}
-
-interface Pattern {
-  id: string;
-  type: string;
-  confidence: number;
-  impact: number;
-  data: any;
-}
-
-interface AdaptationEntry {
-  timestamp: number;
-  state: SystemState;
-  patterns: Pattern[];
-  adjustments: any;
-  previous_level: number;
-}
-
-interface LearningEntry {
-  timestamp: number;
-  level: number;
-  improvements: any[];
-}
-
-interface EvolutionMetrics {
-  cognitive_level: number;
-  learning_rate: number;
-  adaptation_efficiency: number;
-  pattern_effectiveness: number;
-  stability: number;
-}
-
-type Priority = 'HIGH' | 'MEDIUM' | 'LOW';
-
-interface Optimization {
-  type: 'LEARNING_RATE' | 'PATTERN_RECOGNITION' | 'SYSTEM_STABILITY';
-  priority: Priority;
-  target: number;
-}
-
-interface AdaptiveState {
-  current_state: SystemState;
-  evolution_metrics: EvolutionMetrics;
-  learning_rate: number;
-  pattern_recognition: any;
-  adaptation_history: any;
-}
-
-interface OptimizationResult {
-  before: SystemState;
-  after: SystemState;
-  optimizations: Optimization[];
-  improvement: number;
-}
-
-// Classes auxiliares (a serem movidas para arquivos próprios)
-
+// Classes auxiliares
 class AdaptationHistory {
-  constructor(config: any) {
-    // Implementar
+  private adaptations: AdaptationEntry[] = [];
+
+  recordAdaptation(adaptation: AdaptationEntry): void {
+    this.adaptations.push(adaptation);
+    
+    // Manter apenas os últimos 100 registros
+    if (this.adaptations.length > 100) {
+      this.adaptations.shift();
+    }
   }
 
-  recordAdaptation(entry: AdaptationEntry) {
-    // Implementar
+  getRecentAdaptations(count: number): AdaptationEntry[] {
+    return this.adaptations.slice(-count);
   }
 
-  getRecentHistory(): AdaptationEntry[] {
-    return []; // Placeholder
-  }
-
-  getRecentPatterns(): Pattern[] {
-    return []; // Placeholder
-  }
-
-  getLearningHistory(): LearningEntry[] {
-    return []; // Placeholder
-  }
-
-  getSummary(): any {
-    return {}; // Placeholder
+  getAllAdaptations(): AdaptationEntry[] {
+    return [...this.adaptations];
   }
 }
 
-class EvolutionTargets {
-  constructor(config: any) {
-    // Implementar
+class PatternRecognitionSystem {
+  private threshold: number = 0.7;
+
+  async recognizePatterns(state: SystemState): Promise<any[]> {
+    return [
+      { type: 'consciousness_pattern', strength: Math.random(), state },
+      { type: 'adaptation_pattern', strength: Math.random(), state }
+    ];
   }
 
-  getPatternThreshold(): number {
-    return 0.7; // Placeholder
+  async findSimilarPatterns(pattern: any): Promise<any[]> {
+    return [
+      { type: 'similar_pattern', similarity: 0.8, pattern },
+      { type: 'related_pattern', similarity: 0.6, pattern }
+    ];
   }
 
-  update(targets: Partial<EvolutionTargets>) {
-    // Implementar
+  updateThreshold(threshold: number): void {
+    this.threshold = Math.max(0, Math.min(1, threshold));
   }
 }

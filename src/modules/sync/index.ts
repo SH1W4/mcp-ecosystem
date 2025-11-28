@@ -21,9 +21,9 @@ import {
  */
 export class UniversalSync extends EventEmitter {
   private ecosystem: MCPEcosystem;
-  private config: SyncConfig;
+  private config!: SyncConfig;
   private providers: Map<string, SyncProvider>;
-  private metrics: SyncMetrics;
+  private metrics!: SyncMetrics;
   private syncQueue: Map<string, any[]>;
   private activeSyncs: Set<string>;
 
@@ -188,7 +188,7 @@ export class UniversalSync extends EventEmitter {
 
       const duration = Date.now() - startTime;
       this.updateMetrics({
-        duration,
+        duration: duration as any,
         success: true,
         dataTransferred: this.calculateDataTransferred(results)
       });
@@ -299,7 +299,7 @@ export class UniversalSync extends EventEmitter {
     this.metrics.totalSyncs++;
     this.metrics.lastSyncTime = new Date();
     
-    if (metrics.success) {
+    if ((metrics as any).success) {
       this.metrics.successfulSyncs++;
     }
     
@@ -307,10 +307,10 @@ export class UniversalSync extends EventEmitter {
       this.metrics.dataTransferred += metrics.dataTransferred;
     }
     
-    if (metrics.duration) {
+    if ((metrics as any).duration) {
       this.metrics.averageSyncDuration = 
         (this.metrics.averageSyncDuration * (this.metrics.totalSyncs - 1) + 
-         metrics.duration) / this.metrics.totalSyncs;
+         (metrics as any).duration) / this.metrics.totalSyncs;
     }
   }
 

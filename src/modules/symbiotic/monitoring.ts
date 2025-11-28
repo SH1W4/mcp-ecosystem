@@ -1,1 +1,202 @@
-/**\n * Sistema de Monitoramento Simbiótico\n */\n\nimport { MetricsConfig, MetricDefinition } from './types';\n\nexport class SymbioticMonitoring {\n  private metrics: MetricsConfig;\n  private currentValues: Map<string, number>;\n  private evolutionHistory: Map<string, number[]>;\n\n  constructor(metricsConfig: MetricsConfig) {\n    this.metrics = metricsConfig;\n    this.currentValues = new Map();\n    this.evolutionHistory = new Map();\n    this.initializeMetrics();\n  }\n\n  private initializeMetrics() {\n    // Inicializar métricas vitais\n    Object.entries(this.metrics.symbiotic_vitals).forEach(([key, metric]) => {\n      this.currentValues.set(key, metric.range[0]);\n      this.evolutionHistory.set(key, []);\n    });\n\n    // Inicializar métricas de saúde\n    Object.entries(this.metrics.health_monitoring).forEach(([key, metric]) => {\n      this.currentValues.set(key, metric.range[0]);\n      this.evolutionHistory.set(key, []);\n    });\n\n    // Inicializar métricas de evolução\n    Object.entries(this.metrics.evolution_metrics).forEach(([key, metric]) => {\n      this.currentValues.set(key, metric.range[0]);\n      this.evolutionHistory.set(key, []);\n    });\n  }\n\n  public updateMetric(name: string, value: number) {\n    const metric = this.findMetricDefinition(name);\n    if (!metric) {\n      throw new Error(`Métrica não encontrada: ${name}`);\n    }\n\n    // Validar valor dentro do range\n    const [min, max] = metric.range;\n    const clampedValue = Math.min(Math.max(value, min), max);\n\n    // Atualizar valor atual\n    this.currentValues.set(name, clampedValue);\n\n    // Atualizar histórico\n    const history = this.evolutionHistory.get(name) || [];\n    history.push(clampedValue);\n    this.evolutionHistory.set(name, history);\n\n    // Verificar alertas\n    this.checkAlerts(name, clampedValue, metric);\n  }\n\n  public getMetricValue(name: string): number {\n    const value = this.currentValues.get(name);\n    if (value === undefined) {\n      throw new Error(`Métrica não encontrada: ${name}`);\n    }\n    return value;\n  }\n\n  public getMetricHistory(name: string): number[] {\n    const history = this.evolutionHistory.get(name);\n    if (!history) {\n      throw new Error(`Histórico não encontrado para métrica: ${name}`);\n    }\n    return [...history];\n  }\n\n  public getHealthReport(): HealthReport {\n    return {\n      symbiotic_vitals: this.getVitalsReport(),\n      health_status: this.getHealthStatus(),\n      evolution_status: this.getEvolutionStatus(),\n      alerts: this.generateAlerts()\n    };\n  }\n\n  private findMetricDefinition(name: string): MetricDefinition | undefined {\n    // Procurar em todas as categorias de métricas\n    const categories = [\n      this.metrics.symbiotic_vitals,\n      this.metrics.health_monitoring,\n      this.metrics.evolution_metrics\n    ];\n\n    for (const category of categories) {\n      if (name in category) {\n        return category[name as keyof typeof category];\n      }\n    }\n\n    return undefined;\n  }\n\n  private checkAlerts(name: string, value: number, metric: MetricDefinition) {\n    if (!metric.alert_levels) return;\n\n    const { warning, critical } = metric.alert_levels;\n\n    if (value <= critical) {\n      this.emitAlert({\n        type: 'CRITICAL',\n        metric: name,\n        value,\n        threshold: critical,\n        message: `Valor crítico atingido para ${name}: ${value}`\n      });\n    } else if (value <= warning) {\n      this.emitAlert({\n        type: 'WARNING',\n        metric: name,\n        value,\n        threshold: warning,\n        message: `Alerta para ${name}: ${value}`\n      });\n    }\n  }\n\n  private emitAlert(alert: Alert) {\n    // Implementar lógica de emissão de alertas\n    console.log('ALERTA:', alert);\n  }\n\n  private getVitalsReport(): VitalsReport {\n    return {\n      integration_score: this.getMetricValue('integration_score'),\n      adaptation_rate: this.getMetricValue('adaptation_rate'),\n      evolution_progress: this.getMetricValue('evolution_progress')\n    };\n  }\n\n  private getHealthStatus(): HealthStatus {\n    return {\n      symbiotic_cohesion: this.getMetricValue('symbiotic_cohesion'),\n      resource_balance: this.getMetricValue('resource_balance'),\n      emergence_stability: this.getMetricValue('emergence_stability')\n    };\n  }\n\n  private getEvolutionStatus(): EvolutionStatus {\n    return {\n      emergence_rate: this.getMetricValue('emergence_rate'),\n      learning_efficiency: this.getMetricValue('learning_efficiency'),\n      symbiotic_index: this.getMetricValue('symbiotic_index')\n    };\n  }\n\n  private generateAlerts(): Alert[] {\n    const alerts: Alert[] = [];\n    \n    // Verificar todas as métricas por alertas\n    this.currentValues.forEach((value, name) => {\n      const metric = this.findMetricDefinition(name);\n      if (metric?.alert_levels) {\n        this.checkAlerts(name, value, metric);\n      }\n    });\n\n    return alerts;\n  }\n}\n\ninterface HealthReport {\n  symbiotic_vitals: VitalsReport;\n  health_status: HealthStatus;\n  evolution_status: EvolutionStatus;\n  alerts: Alert[];\n}\n\ninterface VitalsReport {\n  integration_score: number;\n  adaptation_rate: number;\n  evolution_progress: number;\n}\n\ninterface HealthStatus {\n  symbiotic_cohesion: number;\n  resource_balance: number;\n  emergence_stability: number;\n}\n\ninterface EvolutionStatus {\n  emergence_rate: number;\n  learning_efficiency: number;\n  symbiotic_index: number;\n}\n\ninterface Alert {\n  type: 'WARNING' | 'CRITICAL';\n  metric: string;\n  value: number;\n  threshold: number;\n  message: string;\n}
+/**
+ * Sistema de Monitoramento Simbiótico
+ */
+
+import { MetricsConfig, MetricDefinition } from './types';
+
+export class SymbioticMonitoring {
+  private metrics: MetricsConfig;
+  private currentValues: Map<string, number>;
+  private evolutionHistory: Map<string, number[]>;
+
+  constructor(metricsConfig: MetricsConfig) {
+    this.metrics = metricsConfig;
+    this.currentValues = new Map();
+    this.evolutionHistory = new Map();
+    this.initializeMetrics();
+  }
+
+  private initializeMetrics() {
+    // Inicializar métricas vitais
+    Object.entries(this.metrics.symbiotic_vitals).forEach(([key, metric]) => {
+      this.currentValues.set(key, metric.range[0]);
+      this.evolutionHistory.set(key, []);
+    });
+
+    // Inicializar métricas de saúde
+    Object.entries(this.metrics.health_monitoring).forEach(([key, metric]) => {
+      this.currentValues.set(key, metric.range[0]);
+      this.evolutionHistory.set(key, []);
+    });
+
+    // Inicializar métricas de evolução
+    Object.entries(this.metrics.evolution_metrics).forEach(([key, metric]) => {
+      this.currentValues.set(key, metric.range[0]);
+      this.evolutionHistory.set(key, []);
+    });
+  }
+
+  public updateMetric(name: string, value: number) {
+    const metric = this.findMetricDefinition(name);
+    if (!metric) {
+      throw new Error(`Métrica não encontrada: ${name}`);
+    }
+
+    // Validar valor dentro do range
+    const [min, max] = metric.range;
+    const clampedValue = Math.min(Math.max(value, min), max);
+
+    // Atualizar valor atual
+    this.currentValues.set(name, clampedValue);
+
+    // Atualizar histórico
+    const history = this.evolutionHistory.get(name) || [];
+    history.push(clampedValue);
+    this.evolutionHistory.set(name, history);
+
+    // Verificar alertas
+    this.checkAlerts(name, clampedValue, metric);
+  }
+
+  public getMetricValue(name: string): number {
+    const value = this.currentValues.get(name);
+    if (value === undefined) {
+      throw new Error(`Métrica não encontrada: ${name}`);
+    }
+    return value;
+  }
+
+  public getMetricHistory(name: string): number[] {
+    const history = this.evolutionHistory.get(name);
+    if (!history) {
+      throw new Error(`Histórico não encontrado para métrica: ${name}`);
+    }
+    return [...history];
+  }
+
+  public getHealthReport(): HealthReport {
+    return {
+      symbiotic_vitals: this.getVitalsReport(),
+      health_status: this.getHealthStatus(),
+      evolution_status: this.getEvolutionStatus(),
+      alerts: this.generateAlerts()
+    };
+  }
+
+  private findMetricDefinition(name: string): MetricDefinition | undefined {
+    // Procurar em todas as categorias de métricas
+    const categories = [
+      this.metrics.symbiotic_vitals,
+      this.metrics.health_monitoring,
+      this.metrics.evolution_metrics
+    ];
+
+    for (const category of categories) {
+      if (name in category) {
+        return category[name as keyof typeof category];
+      }
+    }
+
+    return undefined;
+  }
+
+  private checkAlerts(name: string, value: number, metric: MetricDefinition) {
+    if (!metric.alert_levels) return;
+
+    const { warning, critical } = metric.alert_levels;
+
+    if (value <= critical) {
+      this.emitAlert({
+        type: 'CRITICAL',
+        metric: name,
+        value,
+        threshold: critical,
+        message: `Valor crítico atingido para ${name}: ${value}`
+      });
+    } else if (value <= warning) {
+      this.emitAlert({
+        type: 'WARNING',
+        metric: name,
+        value,
+        threshold: warning,
+        message: `Alerta para ${name}: ${value}`
+      });
+    }
+  }
+
+  private emitAlert(alert: Alert) {
+    // Implementar lógica de emissão de alertas
+    console.log('ALERTA:', alert);
+  }
+
+  private getVitalsReport(): VitalsReport {
+    return {
+      integration_score: this.getMetricValue('integration_score'),
+      adaptation_rate: this.getMetricValue('adaptation_rate'),
+      evolution_progress: this.getMetricValue('evolution_progress')
+    };
+  }
+
+  private getHealthStatus(): HealthStatus {
+    return {
+      symbiotic_cohesion: this.getMetricValue('symbiotic_cohesion'),
+      resource_balance: this.getMetricValue('resource_balance'),
+      emergence_stability: this.getMetricValue('emergence_stability')
+    };
+  }
+
+  private getEvolutionStatus(): EvolutionStatus {
+    return {
+      emergence_rate: this.getMetricValue('emergence_rate'),
+      learning_efficiency: this.getMetricValue('learning_efficiency'),
+      symbiotic_index: this.getMetricValue('symbiotic_index')
+    };
+  }
+
+  private generateAlerts(): Alert[] {
+    const alerts: Alert[] = [];
+    
+    // Verificar todas as métricas por alertas
+    this.currentValues.forEach((value, name) => {
+      const metric = this.findMetricDefinition(name);
+      if (metric?.alert_levels) {
+        this.checkAlerts(name, value, metric);
+      }
+    });
+
+    return alerts;
+  }
+}
+
+interface HealthReport {
+  symbiotic_vitals: VitalsReport;
+  health_status: HealthStatus;
+  evolution_status: EvolutionStatus;
+  alerts: Alert[];
+}
+
+interface VitalsReport {
+  integration_score: number;
+  adaptation_rate: number;
+  evolution_progress: number;
+}
+
+interface HealthStatus {
+  symbiotic_cohesion: number;
+  resource_balance: number;
+  emergence_stability: number;
+}
+
+interface EvolutionStatus {
+  emergence_rate: number;
+  learning_efficiency: number;
+  symbiotic_index: number;
+}
+
+interface Alert {
+  type: 'WARNING' | 'CRITICAL';
+  metric: string;
+  value: number;
+  threshold: number;
+  message: string;
+}

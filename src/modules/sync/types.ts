@@ -91,6 +91,8 @@ export interface SyncMetrics {
   dataTransferred: number; // total bytes
   lastSyncTime: Date | null;
   averageSyncDuration: number; // milliseconds
+  duration?: number; // current sync duration
+  success?: boolean; // current sync success status
 }
 
 export interface ProviderStatus {

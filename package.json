@@ -13,10 +13,13 @@
     "lint": "eslint src --ext .ts",
     "format": "prettier --write \"src/**/*.ts\"",
     "example:modules": "ts-node examples/module-integration.ts",
+    "example:enhanced": "ts-node examples/enhanced-ecosystem-demo.ts",
+    "demo:enhanced": "node scripts/demo-enhanced.js",
     "clean": "rm -rf dist coverage",
     "ecosystem:start": "node start-unified-ecosystem.js",
     "ecosystem:migrate": "powershell -ExecutionPolicy Bypass -File ./migration/migrate-to-ecosystem.ps1",
-    "ecosystem:demo": "ts-node examples/mcp-ecosystem-power-demo.ts"
+    "ecosystem:demo": "ts-node examples/mcp-ecosystem-power-demo.ts",
+    "ecosystem:enhanced": "ts-node examples/enhanced-ecosystem-demo.ts"
   },
   "keywords": [
     "mcp",
@@ -41,7 +44,7 @@
     "typescript": "^5.8.0"
   },
   "dependencies": {
-    "@modelcontextprotocol/sdk": "^1.15.0",
+    "@modelcontextprotocol/sdk": "^1.18.1",
     "eventemitter3": "^5.0.1"
   },
   "jest": {

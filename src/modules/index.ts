@@ -18,30 +18,11 @@ export * from './sync/types';
 // Module registry function
 export function registerAllModules(ecosystem: any): void {
   // Register backup module
-  const backup = new UniversalBackup({
-    defaultProvider: 'fs',
-    autoBackup: {
-      enabled: true,
-      interval: 3600000, // 1 hour
-      retention: {
-        maxBackups: 10,
-        maxAge: 7 * 24 * 60 * 60 * 1000 // 7 days
-      }
-    }
-  });
+  const backup = new UniversalBackup(ecosystem);
   ecosystem.registerModule('backup', backup);
 
   // Register sync module
-  const sync = new UniversalSync({
-    defaultProvider: 'git',
-    autoSync: true,
-    conflictResolution: 'manual',
-    realtime: {
-      enabled: true,
-      reconnectAttempts: 5,
-      reconnectDelay: 1000
-    }
-  });
+  const sync = new UniversalSync(ecosystem);
   ecosystem.registerModule('sync', sync);
 
   console.log('✅ All modules registered successfully');

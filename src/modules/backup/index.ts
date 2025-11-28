@@ -21,9 +21,9 @@ import {
  */
 export class UniversalBackup extends EventEmitter {
   private ecosystem: MCPEcosystem;
-  private config: BackupConfig;
+  private config!: BackupConfig;
   private providers: Map<string, BackupProvider>;
-  private metrics: BackupMetrics;
+  private metrics!: BackupMetrics;
   private isRunning: boolean = false;
 
   constructor(ecosystem: MCPEcosystem) {
@@ -234,13 +234,13 @@ export class UniversalBackup extends EventEmitter {
 
     // Apply compression if enabled
     if (this.config.compression) {
-      data.compressed = true;
+      (data.metadata as any).compressed = true;
       // Compression logic here
     }
 
     // Apply encryption if enabled
     if (this.config.encryption) {
-      data.encrypted = true;
+      (data.metadata as any).encrypted = true;
       // Encryption logic here
     }
 
@@ -277,14 +277,14 @@ export class UniversalBackup extends EventEmitter {
     this.metrics.totalBackups++;
     this.metrics.lastBackupTime = new Date();
     
-    if (metrics.size) {
-      this.metrics.totalSize += metrics.size;
+    if ((metrics as any).size) {
+      this.metrics.totalSize += (metrics as any).size;
     }
     
-    if (metrics.duration) {
+    if ((metrics as any).duration) {
       this.metrics.averageBackupTime = 
         (this.metrics.averageBackupTime * (this.metrics.totalBackups - 1) + 
-         metrics.duration) / this.metrics.totalBackups;
+         (metrics as any).duration) / this.metrics.totalBackups;
     }
     
     if (metrics.compressionRatio) {

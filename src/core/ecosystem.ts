@@ -22,9 +22,9 @@ import {
 export class MCPEcosystem extends EventEmitter {
   private static instance: MCPEcosystem;
   private environments: Map<string, DevelopmentEnvironment>;
-  private capabilities: DevCapabilities;
-  private automation: EnvironmentAutomation;
-  private metrics: MetricsCollector;
+  private capabilities!: DevCapabilities;
+  private automation!: EnvironmentAutomation;
+  private metrics!: MetricsCollector;
   private modules: Map<string, any>;
   public version: string = '1.0.0';
 

@@ -137,3 +137,12 @@ dist
 # Vite logs files
 vite.config.js.timestamp-*
 vite.config.ts.timestamp-*
+
+# TypeScript build artifacts
+*.js
+*.d.ts
+*.d.ts.map
+*.js.map
+# But keep important scripts
+!eslint.config.js
+!prettier.config.mjs

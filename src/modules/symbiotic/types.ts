@@ -1,1 +1,88 @@
-/**\n * Tipos para o módulo simbiótico ARQUIMAX-NEXUS\n */\n\nexport interface SymbioticConfig {\n  bootstrap: {\n    symbiotic_core_init: BootstrapConfig;\n    symbiotic_analysis: BootstrapConfig;\n  };\n  integration: {\n    arquimax_bridge: BridgeConfig;\n    nexus_bridge: BridgeConfig;\n  };\n  evolution: {\n    symbiotic_emergence: EvolutionConfig;\n    symbiotic_evolution: EvolutionConfig;\n  };\n  monitoring: {\n    symbiotic_vitals: MonitoringConfig;\n  };\n}\n\nexport interface BootstrapConfig {\n  automated: boolean;\n  description: string;\n  triggers: string[];\n  params?: any;\n  dependencies?: string[];\n  outputs?: string[];\n}\n\nexport interface BridgeConfig {\n  automated: boolean;\n  description: string;\n  triggers: string[];\n  capabilities: {\n    [key: string]: boolean;\n  };\n  adaptation_level?: number;\n  sync_mode?: string;\n}\n\nexport interface EvolutionConfig {\n  automated: boolean;\n  description: string;\n  triggers: string[];\n  metrics?: string[];\n  conditions?: {\n    [key: string]: string;\n  };\n}\n\nexport interface MonitoringConfig {\n  automated: boolean;\n  description: string;\n  triggers: string[];\n  metrics: string[];\n  alerts: string[];\n}\n\nexport interface MetricsConfig {\n  symbiotic_vitals: {\n    integration_score: MetricDefinition;\n    adaptation_rate: MetricDefinition;\n    evolution_progress: MetricDefinition;\n  };\n  health_monitoring: {\n    symbiotic_cohesion: MetricDefinition;\n    resource_balance: MetricDefinition;\n    emergence_stability: MetricDefinition;\n  };\n  evolution_metrics: {\n    emergence_rate: MetricDefinition;\n    learning_efficiency: MetricDefinition;\n    symbiotic_index: MetricDefinition;\n  };\n}\n\nexport interface MetricDefinition {\n  type: string;\n  range: [number, number];\n  threshold: number;\n  description?: string;\n  alert_levels?: {\n    warning: number;\n    critical: number;\n  };\n}
+/**
+ * Tipos para o módulo simbiótico VIREON
+ */
+
+export interface SymbioticConfig {
+  bootstrap: {
+    symbiotic_core_init: BootstrapConfig;
+    symbiotic_analysis: BootstrapConfig;
+  };
+  integration: {
+    vireon_bridge: BridgeConfig;
+    nexus_bridge: BridgeConfig;
+  };
+  evolution: {
+    symbiotic_emergence: EvolutionConfig;
+    symbiotic_evolution: EvolutionConfig;
+  };
+  monitoring: {
+    symbiotic_vitals: MonitoringConfig;
+  };
+}
+
+export interface BootstrapConfig {
+  automated: boolean;
+  description: string;
+  triggers: string[];
+  params?: any;
+  dependencies?: string[];
+  outputs?: string[];
+}
+
+export interface BridgeConfig {
+  automated: boolean;
+  description: string;
+  triggers: string[];
+  capabilities: {
+    [key: string]: boolean;
+  };
+  adaptation_level?: number;
+  sync_mode?: string;
+}
+
+export interface EvolutionConfig {
+  automated: boolean;
+  description: string;
+  triggers: string[];
+  metrics?: string[];
+  conditions?: {
+    [key: string]: string;
+  };
+}
+
+export interface MonitoringConfig {
+  automated: boolean;
+  description: string;
+  triggers: string[];
+  metrics: string[];
+  alerts: string[];
+}
+
+export interface MetricsConfig {
+  symbiotic_vitals: {
+    integration_score: MetricDefinition;
+    adaptation_rate: MetricDefinition;
+    evolution_progress: MetricDefinition;
+  };
+  health_monitoring: {
+    symbiotic_cohesion: MetricDefinition;
+    resource_balance: MetricDefinition;
+    emergence_stability: MetricDefinition;
+  };
+  evolution_metrics: {
+    emergence_rate: MetricDefinition;
+    learning_efficiency: MetricDefinition;
+    symbiotic_index: MetricDefinition;
+  };
+}
+
+export interface MetricDefinition {
+  type: string;
+  range: [number, number];
+  threshold: number;
+  description?: string;
+  alert_levels?: {
+    warning: number;
+    critical: number;
+  };
+}
