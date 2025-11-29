@@ -1,0 +1,23 @@
+{
+  "mcpServers": {
+    "vireon-mcp": {
+      "command": "node",
+      "args": ["C:\\Users\\João\\Desktop\\PROJETOS\\MCP_ECOSYSTEM\\vireon-mcp-server.js"],
+      "env": {
+        "VIREON_INTEGRATION": "true",
+        "VIREON_TRANSPORT": "stdio",
+        "VIREON_ENABLE_CONTEXT7": "true",
+        "VIREON_ENABLE_METRICS": "true",
+        "VIREON_ENABLE_EVOLUTION": "true"
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+

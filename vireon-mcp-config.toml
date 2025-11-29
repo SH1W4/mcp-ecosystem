@@ -1,0 +1,71 @@
+# VIREON MCP Configuration for Cursor
+# Configuração do VIREON MCP para Cursor
+
+name = "vireon-mcp"
+address = "node 'C:\\Users\\João\\Desktop\\PROJETOS\\MCP_ECOSYSTEM\\vireon-mcp-server.js'"
+persist = true
+
+# Configurações do VIREON
+[environment]
+VIREON_INTEGRATION = "true"
+VIREON_TRANSPORT = "stdio"
+VIREON_PORT = "3000"
+VIREON_ENABLE_CONTEXT7 = "true"
+VIREON_ENABLE_METRICS = "true"
+VIREON_ENABLE_EVOLUTION = "true"
+
+# Configurações de cache
+VIREON_CACHE_ENABLED = "true"
+VIREON_CACHE_TTL = "3600"
+VIREON_CACHE_MAX_SIZE = "1000"
+
+# Configurações de autenticação
+VIREON_AUTH_ENABLED = "true"
+VIREON_AUTH_METHODS = "api_key,bearer_token"
+
+# Configurações de documentação
+VIREON_DOCS_ENABLED = "true"
+VIREON_DOCS_CONTEXT7_ENABLED = "true"
+VIREON_DOCS_LOCAL_ENABLED = "true"
+
+# Configurações de evolução
+VIREON_EVOLUTION_ENABLED = "true"
+VIREON_EVOLUTION_RATE = "0.1"
+VIREON_EVOLUTION_TARGET_LEVEL = "75"
+
+# Configurações de monitoramento
+VIREON_MONITORING_ENABLED = "true"
+VIREON_MONITORING_INTERVAL = "5000"
+VIREON_MONITORING_METRICS = "consciousness,awareness,learning,adaptation,evolution"
+
+# Configurações de transporte
+VIREON_TRANSPORT_TYPE = "stdio"
+VIREON_TRANSPORT_PORT = "3000"
+VIREON_TRANSPORT_HTTP_ENABLED = "true"
+VIREON_TRANSPORT_SSE_ENABLED = "true"
+
+# Configurações de backup
+VIREON_BACKUP_ENABLED = "true"
+VIREON_BACKUP_STRATEGY = "incremental"
+VIREON_BACKUP_COMPRESSION = "true"
+VIREON_BACKUP_ENCRYPTION = "true"
+
+# Configurações de sincronização
+VIREON_SYNC_ENABLED = "true"
+VIREON_SYNC_DIRECTION = "bidirectional"
+VIREON_SYNC_AUTO = "true"
+VIREON_SYNC_CONFLICT_RESOLUTION = "latest-wins"
+
+# Configurações de consciência
+VIREON_CONSCIOUSNESS_ENABLED = "true"
+VIREON_CONSCIOUSNESS_LEVEL = "62"
+VIREON_CONSCIOUSNESS_TARGET = "75"
+VIREON_CONSCIOUSNESS_AWARENESS_DEPTH = "75"
+
+# Configurações simbióticas
+VIREON_SYMBIONT_LEVEL = "62"
+VIREON_SYMBIONT_TARGET = "75"
+VIREON_SYSTEM_COHERENCE = "87.5"
+VIREON_VIREON_STABILITY = "92.3"
+VIREON_SAGE_FIDELITY = "94.1"
+VIREON_OPERATIONAL_SCORE = "87.675"

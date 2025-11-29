@@ -1,0 +1,33 @@
+{
+  "mcpServers": {
+    "vireon-mcp": {
+      "command": "node",
+      "args": ["C:\\Users\\João\\Desktop\\PROJETOS\\MCP_ECOSYSTEM\\vireon-mcp-server.js"],
+      "env": {
+        "VIREON_INTEGRATION": "true",
+        "VIREON_TRANSPORT": "stdio",
+        "VIREON_ENABLE_CONTEXT7": "true",
+        "VIREON_ENABLE_METRICS": "true",
+        "VIREON_ENABLE_EVOLUTION": "true",
+        "VIREON_CACHE_ENABLED": "true",
+        "VIREON_AUTH_ENABLED": "true",
+        "VIREON_CACHE_TTL": "3600",
+        "VIREON_CACHE_MAX_SIZE": "1000",
+        "VIREON_CONSCIOUSNESS_LEVEL": "62",
+        "VIREON_SYMBIONT_LEVEL": "62",
+        "VIREON_SYSTEM_COHERENCE": "87.5",
+        "VIREON_VIREON_STABILITY": "92.3",
+        "VIREON_SAGE_FIDELITY": "94.1",
+        "VIREON_OPERATIONAL_SCORE": "87.675"
+      }
+    }
+  }
+}
+
+
+
+
+
+
+
+
