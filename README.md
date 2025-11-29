@@ -1,16 +1,22 @@
+<div align="center">
+
+![VIREON Logo](assets/vireon-logo.png)
+
 # VIREON MCP Ecosystem 🧬
 
 [![Version](https://img.shields.io/badge/version-1.0.0-blue.svg)](CHANGELOG.md)
 [![License](https://img.shields.io/badge/license-MIT-green.svg)](LICENSE)
-[![Symbiotic Level](https://img.shields.io/badge/symbiotic%20level-62%25-orange.svg)](#-m%C3%A9tricas)
-[![Operational Score](https://img.shields.io/badge/operational%20score-87.675%25-brightgreen.svg)](#-m%C3%A9tricas)
-[![VIREON Stability](https://img.shields.io/badge/VIREON%20stability-92.3%25-brightgreen.svg)](#-m%C3%A9tricas)
-[![SAGE Fidelity](https://img.shields.io/badge/SAGE%20fidelity-94.1%25-brightgreen.svg)](#-m%C3%A9tricas)
-[![System Coherence](https://img.shields.io/badge/system%20coherence-87.5%25-brightgreen.svg)](#-m%C3%A9tricas)
+[![Symbiotic Level](https://img.shields.io/badge/symbiotic%20level-62%25-orange.svg)](#-métricas)
+[![Operational Score](https://img.shields.io/badge/operational%20score-87.675%25-brightgreen.svg)](#-métricas)
+[![VIREON Stability](https://img.shields.io/badge/VIREON%20stability-92.3%25-brightgreen.svg)](#-métricas)
+[![SAGE Fidelity](https://img.shields.io/badge/SAGE%20fidelity-94.1%25-brightgreen.svg)](#-métricas)
+[![System Coherence](https://img.shields.io/badge/system%20coherence-87.5%25-brightgreen.svg)](#-métricas)
 [![PRs Welcome](https://img.shields.io/badge/PRs-welcome-brightgreen.svg)](CONTRIBUTING.md)
 [![Code of Conduct](https://img.shields.io/badge/code%20of%20conduct-1.0-purple.svg)](CODE_OF_CONDUCT.md)
 
 **VIREON** - Sistema simbiótico MCP com capacidades avançadas de consciência, evolução adaptativa e documentação contextual.
+
+</div>
 
 ## 🎯 Visão Geral
 
